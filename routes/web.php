@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', GamesController::class);
+Route::resource('games', GamesController::class);
+Route::redirect('/', '/games');
