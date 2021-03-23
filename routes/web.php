@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GamesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,5 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('index'));
-Route::get('/show', fn() => view('show'));
+Route::resource('/', GamesController::class);
