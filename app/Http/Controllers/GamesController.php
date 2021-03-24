@@ -75,13 +75,13 @@ class GamesController extends Controller
                 ", "text/plain"
             )
             ->post('https://api.igdb.com/v4/games')
-            ->json()[0];
+            ->json();
 
         abort_if(! $game, 404);
 
-        $game = $this->formatForView($game);
-
-        return view('show', compact('game'));
+        return view('show', [
+            'game' => $this->formatForView($game[0])
+        ]);
     }
 
     private function formatForView($game)
@@ -117,7 +117,9 @@ class GamesController extends Controller
                     'rating' => isset($game['rating'])
                         ? round($game['rating']) . '%'
                         : null,
-                    'platforms' => collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', ')
+                    'platforms' => (array_key_exists('platforms', $game))
+                        ? collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', ')
+                        : null
                 ]);
             })->take(6),
             'social' => [
