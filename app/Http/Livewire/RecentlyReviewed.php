@@ -45,7 +45,7 @@ class RecentlyReviewed extends Component
                     $game['cover']['url']
                 ),
                 'rating' => isset($game['rating'])
-                    ? round($game['rating']) . '%'
+                    ? round($game['rating'])
                     : null,
                 'platforms' => collect($game['platforms'])
                     ->pluck('abbreviation')

@@ -96,10 +96,10 @@ class GamesController extends Controller
             'involvedCompanies' => collect($game['involved_companies'])->pluck('company.name')->filter()->implode(', '),
             'platforms' => collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', '),
             'memberRating' => isset($game['rating'])
-                ? round($game['rating']) . '%'
+                ? round($game['rating'])
                 : null,
             'criticRating' => isset($game['aggregated_rating'])
-                ? round($game['aggregated_rating']) . '%'
+                ? round($game['aggregated_rating'])
                 : null,
             'screenshots' => collect($game['screenshots'])->map(function ($screenshot) {
                 return [
@@ -115,7 +115,7 @@ class GamesController extends Controller
                         $game['cover']['url']
                     ),
                     'rating' => isset($game['rating'])
-                        ? round($game['rating']) . '%'
+                        ? round($game['rating'])
                         : null,
                     'platforms' => (array_key_exists('platforms', $game))
                         ? collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', ')

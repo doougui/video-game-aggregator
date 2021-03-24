@@ -26,10 +26,14 @@
                 <div class="flex flex-wrap items-center mt-8">
                     @if(isset($game['memberRating']))
                         <div class="flex items-center">
-                            <div class="w-16 h-16 bg-gray-800 rounded-full">
-                                <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                    {{ $game['memberRating'] }}
-                                </div>
+                            <div id="memberRating" class="w-16 h-16 bg-gray-800 rounded-full relative text-xs">
+                                @push('scripts')
+                                    @include('_rating', [
+                                        'slug' => 'memberRating',
+                                        'rating' => $game['memberRating'],
+                                        'event' => null
+                                    ])
+                                @endpush
                             </div>
                             <div class="ml-4 text-xs">Member <br> Score</div>
                         </div>
@@ -37,10 +41,14 @@
 
                     @if(isset($game['criticRating']))
                         <div class="flex items-center @if(isset($game['rating'])) ml-12 @endif">
-                            <div class="w-16 h-16 bg-gray-800 rounded-full">
-                                <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                    {{ $game['criticRating'] }}
-                                </div>
+                            <div id="criticRating" class="w-16 h-16 bg-gray-800 rounded-full relative text-xs">
+                                @push('scripts')
+                                    @include('_rating', [
+                                        'slug' => 'criticRating',
+                                        'rating' => $game['criticRating'],
+                                        'event' => null
+                                    ])
+                                @endpush
                             </div>
                             <div class="ml-4 text-xs">Critic <br> Score</div>
                         </div>

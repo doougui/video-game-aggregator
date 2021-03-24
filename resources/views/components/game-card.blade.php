@@ -5,11 +5,15 @@
         </a>
 
         @if(isset($game['rating']))
-            <div class="absolute -bottom-5 -right-5 w-16 h-16 bg-gray-800 rounded-full">
-                <div class="font-semibold text-xs flex justify-center items-center h-full">
-                    {{ $game['rating'] }}
-                </div>
-            </div>
+            <div id="{{ $game['slug'] }}" class="absolute -bottom-5 -right-5 w-16 h-16 bg-gray-800 rounded-full"></div>
+
+            @push('scripts')
+                @include('_rating', [
+                    'slug' => $game['slug'],
+                    'rating' => $game['rating'],
+                    'event' => null
+                ])
+            @endpush
         @endif
     </div>
 
