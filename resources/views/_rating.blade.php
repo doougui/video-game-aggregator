@@ -1,5 +1,6 @@
 <script>
-    var progressBarContainer = document.querySelector('#{{ $slug }}');
+    @if($event) window.livewire.on('{{ $event }}', params => { @endif
+    var progressBarContainer = document.getElementById({{ $event ? 'params.slug' : $slug }});
 
     var bar = new ProgressBar.Circle(progressBarContainer, {
         color: 'white',
@@ -29,5 +30,11 @@
         }
     });
 
-    bar.animate({{ $rating / 100 }});  // Number from 0.0 to 1.0
+    @if ($event)
+        bar.animate(params.rating);
+    @else
+        bar.animate({{ $rating }} / 100);
+    @endif
+
+    @if($event) }) @endif
 </script>

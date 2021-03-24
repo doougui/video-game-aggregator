@@ -10,11 +10,7 @@
                     </a>
 
                     @if(isset($game['rating']))
-                        <div class="absolute -bottom-5 -right-5 w-16 h-16 bg-gray-900 rounded-full">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                {{ $game['rating'] }}
-                            </div>
-                        </div>
+                        <div id="review_{{ $game['slug'] }}" class="absolute -bottom-5 -right-5 w-16 h-16 bg-gray-900 rounded-full"></div>
                     @endif
                 </div>
 
@@ -55,3 +51,10 @@
         @endforelse
     </div>
 </div>
+
+@push('scripts')
+    @include('_rating', [
+        'event' => 'reviewGameWithRatingAdded'
+    ])
+@endpush
+
