@@ -1,6 +1,11 @@
 <script>
     @if($event) window.livewire.on('{{ $event }}', params => { @endif
-    var progressBarContainer = document.getElementById({{ $event ? 'params.slug' : $slug }});
+
+    @if ($event)
+      var progressBarContainer = document.getElementById(params.slug);
+    @else
+      var progressBarContainer = document.getElementById('{{ $slug }}');
+    @endif
 
     var bar = new ProgressBar.Circle(progressBarContainer, {
         color: 'white',
