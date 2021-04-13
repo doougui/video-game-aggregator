@@ -9,9 +9,9 @@
                         <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] }}" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
                     </a>
 
-                    @if(isset($game['rating']))
-                        <div id="review_{{ $game['slug'] }}" class="absolute -bottom-5 -right-5 w-16 h-16 bg-gray-900 rounded-full"></div>
-                    @endif
+                    @isset($game['rating'])
+                        <div id="{{ $prefix }}_{{ $game['slug'] }}" class="absolute -bottom-5 -right-5 w-16 h-16 bg-gray-900 rounded-full"></div>
+                    @endisset
                 </div>
 
                 <div class="ml-12">
@@ -51,10 +51,3 @@
         @endforelse
     </div>
 </div>
-
-@push('scripts')
-    @include('_rating', [
-        'event' => 'reviewGameWithRatingAdded'
-    ])
-@endpush
-

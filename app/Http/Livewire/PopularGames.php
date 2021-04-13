@@ -11,6 +11,7 @@ use Livewire\Component;
 class PopularGames extends Component
 {
     public $games = [];
+    public string $prefix = 'popular';
 
     public function fetch()
     {
@@ -37,11 +38,16 @@ class PopularGames extends Component
         collect($this->games)->filter(function ($game) {
             return $game['rating'];
         })->each(function ($game) {
-            $this->emit('gameWithRatingAdded', [
-                'slug' => $game['slug'],
-                'rating' => $game['rating'] / 100
-            ]);
+            $this->emitEvent('gameWithRatingAdded', $game);
         });
+    }
+
+    private function emitEvent($event, $game)
+    {
+        $this->emit($event, [
+            'slug' => $this->prefix . '_' . $game['slug'],
+            'rating' => $game['rating'] / 100
+        ]);
     }
 
     private function formatForView($games)
