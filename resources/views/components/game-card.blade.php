@@ -4,7 +4,7 @@
             <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] }}" class="hover:opacity-75 transition ease-in-out duration-150">
         </a>
 
-        @if(isset($game['rating']))
+        @isset($game['rating'])
             <div id="{{ $game['slug'] }}" class="absolute -bottom-5 -right-5 w-16 h-16 bg-gray-800 rounded-full"></div>
 
             @push('scripts')
@@ -14,7 +14,7 @@
                     'event' => null
                 ])
             @endpush
-        @endif
+        @endisset
     </div>
 
     <a href="{{ route('games.show', $game['slug']) }}"

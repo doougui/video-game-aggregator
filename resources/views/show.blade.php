@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="flex flex-wrap items-center mt-8">
-                    @if(isset($game['memberRating']))
+                    @isset($game['memberRating'])
                         <div class="flex items-center">
                             <div id="memberRating" class="w-16 h-16 bg-gray-800 rounded-full relative text-xs">
                                 @push('scripts')
@@ -37,9 +37,9 @@
                             </div>
                             <div class="ml-4 text-xs">Member <br> Score</div>
                         </div>
-                    @endif
+                    @endisset
 
-                    @if(isset($game['criticRating']))
+                    @isset($game['criticRating'])
                         <div class="flex items-center @if(isset($game['rating'])) ml-12 @endif">
                             <div id="criticRating" class="w-16 h-16 bg-gray-800 rounded-full relative text-xs">
                                 @push('scripts')
@@ -52,7 +52,7 @@
                             </div>
                             <div class="ml-4 text-xs">Critic <br> Score</div>
                         </div>
-                    @endif
+                    @endisset
 
                     <div class="flex items-center space-x-4 mt-4 lg:mt-0 lg:ml-12">
                         @if($game['social']['website'])
