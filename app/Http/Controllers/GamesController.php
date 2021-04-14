@@ -20,33 +20,12 @@ class GamesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param string $slug
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show($slug)
+    public function show(string $slug)
     {
         $game = Http::withHeaders(config('services.igdb'))
             ->withBody(
@@ -65,12 +44,7 @@ class GamesController extends Controller
                         summary,
                         websites.*,
                         videos.*,
-                        screenshots.*,
-                        similar_games.rating,
-                        similar_games.name,
-                        similar_games.slug,
-                        similar_games.cover.url,
-                        similar_games.platforms.abbreviation;
+                        screenshots.*;
                     where slug=\"{$slug}\";
                 ", "text/plain"
             )
@@ -108,21 +82,6 @@ class GamesController extends Controller
                   'big' => Str::replaceFirst('thumb', 'screenshot_big', $screenshot['url'])
                 ];
             })->take(9),
-            'similarGames' => collect($game['similar_games'])->map(function ($game) {
-                return collect($game)->merge([
-                    'coverImageUrl' => Str::replaceFirst(
-                        'thumb',
-                        'cover_big',
-                        $game['cover']['url']
-                    ),
-                    'rating' => isset($game['rating'])
-                        ? round($game['rating'])
-                        : null,
-                    'platforms' => (array_key_exists('platforms', $game))
-                        ? collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', ')
-                        : null
-                ]);
-            })->take(6),
             'social' => [
                 'website' => collect($game['websites'])->first(),
                 'facebook' => collect($game['websites'])->filter(function ($website) {
@@ -136,39 +95,5 @@ class GamesController extends Controller
                 })->first(),
             ]
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
