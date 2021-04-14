@@ -6,13 +6,14 @@ use Illuminate\View\Component;
 
 class ReviewCard extends Component
 {
-    public $game;
-    public $prefix;
+    public string $game;
+    public string $prefix;
 
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param $game
+     * @param $prefix
      */
     public function __construct($game, $prefix)
     {
