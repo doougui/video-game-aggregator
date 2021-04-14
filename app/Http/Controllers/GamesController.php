@@ -61,11 +61,11 @@ class GamesController extends Controller
     private function formatForView($game)
     {
         return collect($game)->merge([
-            'coverImageUrl' => Str::replaceFirst(
+            'coverImageUrl' => isset($game['cover']) ? Str::replaceFirst(
                 'thumb',
                 'cover_big',
                 $game['cover']['url']
-            ),
+            ) : asset('/img/cover_not_found.jpg'),
             'genres' => collect($game['genres'])->pluck('name')->filter()->implode(', '),
             'involvedCompanies' => collect($game['involved_companies'])->pluck('company.name')->filter()->implode(', '),
             'platforms' => collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', '),

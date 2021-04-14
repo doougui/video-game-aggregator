@@ -42,18 +42,19 @@ class BaseGameComponent extends Component
     {
         return collect($games)->map(function ($game) {
             return collect($game)->merge([
-                'coverImageUrl' => Str::replaceFirst(
+                'coverImageUrl' => isset($game['cover']) ? Str::replaceFirst(
                     'thumb',
                     'cover_big',
                     $game['cover']['url']
-                ),
+                ) : asset('/img/cover_not_found.jpg'),
                 'rating' => isset($game['rating'])
                     ? round($game['rating'])
                     : null,
-                'platforms' => collect($game['platforms'])
+                'platforms' => isset($game['platforms']) ? collect($game['platforms'])
                     ->pluck('abbreviation')
                     ->filter()
                     ->implode(', ')
+                    : 'No specified platform(s)'
             ])->toArray();
         });
     }

@@ -12,11 +12,11 @@ class BaseSmallGameComponent extends Component
     {
         return collect($games)->map(function ($game) {
             return collect($game)->merge([
-                'coverImageUrl' => Str::replaceFirst(
+                'coverImageUrl' => isset($game['cover']) ? Str::replaceFirst(
                     'thumb',
                     'cover_small',
                     $game['cover']['url']
-                ),
+                ) : asset('/img/cover_not_found.jpg'),
                 'first_release_date' => Carbon::parse(
                     $game['first_release_date']
                 )->format('M d, Y')
