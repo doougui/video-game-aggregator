@@ -2,17 +2,15 @@
 
 namespace App\Http\Livewire;
 
-use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
-use Livewire\Component;
 
-class SimilarGames extends Component
+class SimilarGames extends BaseGameComponent
 {
     public $games = [];
-    public $prefix = 'similar';
-    public $baseGame;
+    public string $prefix = 'similar';
+    public string $baseGame;
 
     public function fetch()
     {
@@ -33,40 +31,11 @@ class SimilarGames extends Component
                 ->json();
         });
 
-        $this->games = $this->formatForView($nonformattedGames[0]['similar_games']);
+        $this->games = $this
+            ->formatForView($nonformattedGames[0]['similar_games'])
+            ->take(6);
 
-        collect($this->games)->filter(function ($game) {
-            return $game['rating'];
-        })->each(function ($game) {
-            $this->emitEvent('gameWithRatingAdded', $game);
-        });
-    }
-
-    private function emitEvent($event, $game)
-    {
-        $this->emit($event, [
-            'slug' => $this->prefix . '_' . $game['slug'],
-            'rating' => $game['rating'] / 100
-        ]);
-    }
-
-    private function formatForView($games)
-    {
-        return collect($games)->map(function ($game) {
-            return collect($game)->merge([
-                'coverImageUrl' => Str::replaceFirst(
-                    'thumb',
-                    'cover_big',
-                    $game['cover']['url']
-                ),
-                'rating' => isset($game['rating'])
-                    ? round($game['rating'])
-                    : null,
-                'platforms' => (array_key_exists('platforms', $game))
-                    ? collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', ')
-                    : null
-            ])->toArray();
-        })->take(6);
+        $this->emitEvents('gameWithRatingAdded', $this->games, $this->prefix);
     }
 
     public function render()

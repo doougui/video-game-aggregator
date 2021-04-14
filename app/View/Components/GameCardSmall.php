@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class GameCardSmall extends Component
 {
-    public string $game;
+    public array $game;
 
     /**
      * Create a new component instance.

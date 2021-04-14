@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class ReviewCard extends Component
 {
-    public string $game;
+    public array $game;
     public string $prefix;
 
     /**

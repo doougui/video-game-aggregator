@@ -5,13 +5,12 @@ namespace App\Http\Livewire;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
-use Livewire\Component;
+use Illuminate\Support\Collection;
 
-class PopularGames extends Component
+class PopularGames extends BaseGameComponent
 {
     public $games = [];
-    public $prefix = 'popular';
+    public string $prefix = 'popular';
 
     public function fetch()
     {
@@ -35,39 +34,7 @@ class PopularGames extends Component
 
         $this->games = $this->formatForView($nonformattedGames);
 
-        collect($this->games)->filter(function ($game) {
-            return $game['rating'];
-        })->each(function ($game) {
-            $this->emitEvent('gameWithRatingAdded', $game);
-        });
-    }
-
-    private function emitEvent($event, $game)
-    {
-        $this->emit($event, [
-            'slug' => $this->prefix . '_' . $game['slug'],
-            'rating' => $game['rating'] / 100
-        ]);
-    }
-
-    private function formatForView($games)
-    {
-        return collect($games)->map(function ($game) {
-            return collect($game)->merge([
-                'coverImageUrl' => Str::replaceFirst(
-                    'thumb',
-                    'cover_big',
-                    $game['cover']['url']
-                ),
-                'rating' => isset($game['rating'])
-                    ? round($game['rating'])
-                    : null,
-                'platforms' => collect($game['platforms'])
-                    ->pluck('abbreviation')
-                    ->filter()
-                    ->implode(', ')
-            ])->toArray();
-        });
+        $this->emitEvents('gameWithRatingAdded', $this->games, $this->prefix);
     }
 
     public function render()
