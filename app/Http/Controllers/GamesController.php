@@ -69,7 +69,9 @@ class GamesController extends Controller
             'genres' => collect($game['genres'])->pluck('name')->filter()->implode(', '),
             'involvedCompanies' => collect($game['involved_companies'])->pluck('company.name')->filter()->implode(', '),
             'platforms' => collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', '),
-            'trailer' => 'https://youtube.com/embed/'.$game['videos'][0]['video_id'],
+            'trailer' => isset($game['videos'][0]['video_id'])
+                ? 'https://youtube.com/embed/'.$game['videos'][0]['video_id']
+                : null,
             'memberRating' => isset($game['rating'])
                 ? round($game['rating'])
                 : null,

@@ -1,6 +1,6 @@
 <div class="game bg-gray-800 rounded-lg shadow-md flex px-6 py-6">
     <div class="relative flex-none">
-        <a href="#">
+        <a href="{{ route('games.show', $game['slug']) }}">
             <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] }}" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
         </a>
 
@@ -10,7 +10,7 @@
     </div>
 
     <div class="ml-12">
-        <a href="#"
+        <a href="{{ route('games.show', $game['slug']) }}"
            class="block text-lg font-semibold leading-tight hover:text-gray-400 mt-4"
         >
             {{ $game['name'] }}
