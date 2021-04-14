@@ -16,7 +16,7 @@ class GamesController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('games.index');
     }
 
     /**
@@ -53,7 +53,7 @@ class GamesController extends Controller
 
         abort_if(! $game, 404);
 
-        return view('show', [
+        return view('games.show', [
             'game' => $this->formatForView($game[0])
         ]);
     }
