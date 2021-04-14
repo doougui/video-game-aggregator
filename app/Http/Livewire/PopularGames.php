@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class PopularGames extends BaseGameComponent
+class PopularGames extends GameComponent
 {
     public $games = [];
     public string $prefix = 'popular';

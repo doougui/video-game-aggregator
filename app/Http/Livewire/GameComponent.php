@@ -6,10 +6,10 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 
 /**
- * Class BaseGameComponent
+ * Class GameComponent
  * @package App\Http\Livewire
  */
-class BaseGameComponent extends Component
+class GameComponent extends Component
 {
     /**
      * Emits specified event

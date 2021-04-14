@@ -2,19 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-
-class CriticRating extends Component
+class CriticRating extends RatingComponent
 {
     public $game = [];
     public $prefix = 'criticRating';
 
     public function rate()
     {
-        $this->emit('gameWithRatingAdded', [
-            'slug' => $this->prefix . '_' . $this->game['slug'],
-            'rating' => $this->game['memberRating'] / 100
-        ]);
+        $this->emitEvent('gameWithRatingAdded', $this->game, $this->prefix);
     }
 
     public function render()

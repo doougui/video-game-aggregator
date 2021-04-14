@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
-class BaseSmallGameComponent extends Component
+class SmallGameComponent extends Component
 {
     protected function formatForView($games)
     {

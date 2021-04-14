@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class RecentlyReviewed extends BaseGameComponent
+class RecentlyReviewed extends GameComponent
 {
     public $games = [];
     public string $prefix = 'reviewed';

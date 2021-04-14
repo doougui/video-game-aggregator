@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class ComingSoon extends BaseSmallGameComponent
+class ComingSoon extends SmallGameComponent
 {
     public $games = [];
 

@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class MostAnticipated extends BaseSmallGameComponent
+class MostAnticipated extends SmallGameComponent
 {
     public $games = [];
 
