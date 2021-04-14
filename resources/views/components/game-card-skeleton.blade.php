@@ -4,7 +4,7 @@
     </div>
 
     <div class="block text-transparent text-lg bg-gray-700 rounded leading-tight mt-4">
-        title goes here
+        This is the title
     </div>
     <div class="text-transparent bg-gray-700 inline-block rounded mt-3">PS4, PC, Switch</div>
 </div>
