@@ -8,32 +8,32 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
-class PopularGames extends Component
+class SimilarGames extends Component
 {
     public $games = [];
-    public $prefix = 'popular';
+    public $prefix = 'similar';
+    public $baseGame;
 
     public function fetch()
     {
         $nonformattedGames = Cache::remember('popular-games', 7, function () {
-            $before = Carbon::now()->subMonths(2)->timestamp;
-            $after = Carbon::now()->addMonths(2)->timestamp;
-
             return Http::withHeaders(config('services.igdb'))
                 ->withBody(
-            "fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, slug;
-                    where platforms = (48, 49, 130, 6)
-                    & ( first_release_date >={$before}
-                    & first_release_date < {$after}
-                    & total_rating_count > 5 );
-                    sort total_rating_count desc;
-                    limit 12;", "text/plain"
+            "
+                        fields
+                            similar_games.rating,
+                            similar_games.name,
+                            similar_games.slug,
+                            similar_games.cover.url,
+                            similar_games.platforms.abbreviation;
+                        where slug=\"{$this->baseGame}\";
+                    ", "text/plain"
                 )
                 ->post('https://api.igdb.com/v4/games')
                 ->json();
         });
 
-        $this->games = $this->formatForView($nonformattedGames);
+        $this->games = $this->formatForView($nonformattedGames[0]['similar_games']);
 
         collect($this->games)->filter(function ($game) {
             return $game['rating'];
@@ -62,16 +62,15 @@ class PopularGames extends Component
                 'rating' => isset($game['rating'])
                     ? round($game['rating'])
                     : null,
-                'platforms' => collect($game['platforms'])
-                    ->pluck('abbreviation')
-                    ->filter()
-                    ->implode(', ')
+                'platforms' => (array_key_exists('platforms', $game))
+                    ? collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', ')
+                    : null
             ])->toArray();
-        });
+        })->take(6);
     }
 
     public function render()
     {
-        return view('livewire.popular-games');
+        return view('livewire.similar-games');
     }
 }

@@ -192,14 +192,6 @@
             </template>
         </div>
 
-        <div class="similar-games-container mt-8">
-            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Similar Games</h2>
-
-            <div class="popular-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12">
-                @foreach($game['similarGames'] as $game)
-                    <x-game-card :game="$game" />
-                @endforeach
-            </div>
-        </div>
+        <livewire:similar-games :baseGame="$game['slug']" />
     </div>
 @endsection
