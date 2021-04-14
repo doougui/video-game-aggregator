@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Collection;
 
 class PopularGames extends BaseGameComponent
 {
