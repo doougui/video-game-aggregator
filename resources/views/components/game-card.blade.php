@@ -6,14 +6,6 @@
 
         @isset($game['rating'])
             <div id="{{ (isset($prefix) ? $prefix . '_' : '') . $game['slug'] }}" class="absolute -bottom-5 -right-5 w-16 h-16 bg-gray-800 rounded-full"></div>
-
-            @push('scripts')
-                @include('_rating', [
-                    'slug' => $game['slug'],
-                    'rating' => $game['rating'],
-                    'event' => null
-                ])
-            @endpush
         @endisset
     </div>
 

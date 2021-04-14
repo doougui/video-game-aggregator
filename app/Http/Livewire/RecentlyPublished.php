@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class RecentlyReviewed extends GameComponent
+class RecentlyPublished extends GameComponent
 {
     public $games = [];
     public string $prefix = 'reviewed';
@@ -39,6 +39,6 @@ class RecentlyReviewed extends GameComponent
 
     public function render()
     {
-        return view('livewire.recently-reviewed');
+        return view('livewire.recently-published');
     }
 }
