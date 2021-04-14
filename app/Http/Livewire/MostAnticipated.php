@@ -5,10 +5,8 @@ namespace App\Http\Livewire;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
-use Livewire\Component;
 
-class MostAnticipated extends Component
+class MostAnticipated extends BaseSmallGameComponent
 {
     public $games = [];
 
@@ -32,22 +30,6 @@ class MostAnticipated extends Component
         });
 
         $this->games = $this->formatForView($nonformattedGames);
-    }
-
-    private function formatForView($games)
-    {
-        return collect($games)->map(function ($game) {
-            return collect($game)->merge([
-                'coverImageUrl' => Str::replaceFirst(
-                    'thumb',
-                    'cover_small',
-                    $game['cover']['url']
-                ),
-                'first_release_date' => Carbon::parse(
-                    $game['first_release_date']
-                )->format('M d, Y')
-            ])->toArray();
-        });
     }
 
     public function render()
