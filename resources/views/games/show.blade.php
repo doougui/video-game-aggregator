@@ -103,7 +103,7 @@
                     <template x-if="isTrailerModalVisible">
                         <div
                             style="background: rgba(0, 0, 0, .5)"
-                            class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
+                            class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto z-50"
                         >
                             <div
                                 class="container mx-auto lg:px-32 rounded-lg overflow-y-auto"
@@ -166,7 +166,7 @@
             <template x-if="isImageModalVisible">
                 <div
                     style="background: rgba(0, 0, 0, .5)"
-                    class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
+                    class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto z-50"
                 >
                     <div
                         class="container mx-auto lg:px-32 rounded-lg overflow-y-auto"
