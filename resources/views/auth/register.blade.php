@@ -1,59 +1,115 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
+<x-app-layout>
+    <div class="w-2/4 container mx-auto my-5 px-4">
+        <form action="{{ route('register') }}" method="POST">
             @csrf
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            <div class="mb-6">
+                <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Sign up') }}</h1>
+                <p class="text-gray-400">Join us and enjoy your gaming hours with an awesome community of gamers.</p>
             </div>
 
-            <!-- Email Address -->
+            <div class="mt-3">
+                <label for="name" class="label">{{ __('Name') }}</label>
+                <input id="name"
+                       class="input @error('name') border-red-500 @enderror"
+                       type="text"
+                       name="name"
+                       placeholder="John Doe"
+                       value="{{ old('name') }}"
+                       autocomplete="name"
+                       required
+                >
+
+                @error('name')
+                <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-3">
+                <label for="nickname" class="label">{{ __('Nickname') }}</label>
+                <input id="nickname"
+                       class="input @error('nickname') border-red-500 @enderror"
+                       type="text"
+                       name="nickname"
+                       placeholder="johndoe"
+                       value="{{ old('nickname') }}"
+                       autocomplete="nickname"
+                       required
+                >
+
+                @error('nickname')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-3">
+                <label for="email" class="label">{{ __('Email') }}</label>
+                <input id="email"
+                       class="input @error('email') border-red-500 @enderror"
+                       type="email"
+                       name="email"
+                       placeholder="email@email.com"
+                       value="{{ old('email') }}"
+                       autocomplete="email"
+                       required
+                >
+
+                @error('email')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-3">
+                <label for="password" class="label">{{ __('Password') }}</label>
+                <input id="password"
+                       class="input @error('password') border-red-500 @enderror"
+                       type="password"
+                       name="password"
+                       placeholder="********"
+                       autocomplete="current-password"
+                       required
+                >
+
+                @error('password')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-3">
+                <label for="password" class="label">{{ __('Password Confirmation') }}</label>
+                <input id="password_confirmation"
+                       class="input @error('password_confirmation') border-red-500 @enderror"
+                       type="password"
+                       name="password_confirmation"
+                       placeholder="********"
+                       required
+                >
+
+                @error('password_confirmation')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-3">
+                <label for="agreement" class="inline-flex items-center">
+                    <input id="agreement"
+                           type="checkbox"
+                           name="agreement"
+                           {{ old('agreement') ? 'checked' : '' }}
+                    >
+                    <span class="label ml-2" style="margin-bottom: 0;">{{ __('I\'ve read and agree with the Terms of Service and our Privacy Policy') }}</span>
+                </label>
+            </div>
+
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <button type="submit" class="button w-full justify-center">
+                    Sign up
+                </button>
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+            <div class="mt-3 text-center">
+                <p class="text-gray-300">Already have an account? <a href="{{ route('register') }}" class="link text-blue-500">Log in</a>.</p>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</x-app-layout>
