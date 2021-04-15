@@ -37,6 +37,7 @@ class RegisteredUserController extends Controller
             'nickname' => 'required|string|max:255|unique:users|alpha_dash',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
+            'agreement' => 'required',
         ]);
 
         $user = User::create([

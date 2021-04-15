@@ -21,7 +21,7 @@
                 >
 
                 @error('name')
-                <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -95,10 +95,15 @@
                     <input id="agreement"
                            type="checkbox"
                            name="agreement"
+                           class="@error('agreement') border-red-500 @enderror"
                            {{ old('agreement') ? 'checked' : '' }}
                     >
                     <span class="label ml-2" style="margin-bottom: 0;">{{ __('I\'ve read and agree with the Terms of Service and our Privacy Policy') }}</span>
                 </label>
+
+                @error('agreement')
+                    <p class="mt-1 text-red-500 text-xs">Field required</p>
+                @enderror
             </div>
 
             <div class="mt-4">
