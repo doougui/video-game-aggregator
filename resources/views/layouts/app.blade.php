@@ -1,16 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Video Game Aggregator</title>
-    @livewireStyles
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-</head>
-<body class="bg-gray-900 text-white">
+<x-main-layout>
     <header class="border-b border-gray-800">
         <nav class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-6">
             <div class="flex flex-col lg:flex-row items-center">
@@ -36,14 +24,4 @@
     <main class="py-8">
         {{ $slot }}
     </main>
-
-    <footer class="border-t border-gray-800">
-        <div class="container mx-auto px-4 py-6">
-            Powered By: <a href="#" class="underline hover:text-gray-400">IGDB API</a>
-        </div>
-    </footer>
-
-    @livewireScripts
-    <script src="{{ asset('/js/app.js') }}"></script>
-</body>
-</html>
+</x-main-layout>
