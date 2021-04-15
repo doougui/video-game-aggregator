@@ -9,7 +9,7 @@
             <div class="mt-3">
                 <label for="email" class="label">{{ __('Email') }}</label>
                 <input id="email"
-                       class="input"
+                       class="input @error('email') border-red-500 @enderror"
                        type="email"
                        name="email"
                        placeholder="email@email.com"
@@ -17,18 +17,26 @@
                        autocomplete="email"
                        required
                 >
+
+                @error('email')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mt-3">
                 <label for="password" class="label">{{ __('Password') }}</label>
                 <input id="password"
-                       class="input"
+                       class="input @error('password') border-red-500 @enderror"
                        type="password"
                        name="password"
                        placeholder="********"
                        autocomplete="current-password"
                        required
                 >
+
+                @error('password')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mt-3">
