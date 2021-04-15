@@ -1,6 +1,8 @@
 <x-app-layout>
     <div class="w-2/4 container mx-auto my-5 px-4">
         <form action="{{ route('login') }}" method="POST">
+            @csrf
+
             <div class="mb-6">
                 <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Log in') }}</h1>
                 <p class="text-gray-400">Log in to be able to track your gaming activity and share your experiences.</p>
@@ -44,8 +46,7 @@
                     <input id="remember_me"
                            type="checkbox"
                            name="remember_me"
-                           value="{{ old('remember_me') }}"
-                           required
+                           {{ old('remember_me') ? 'checked' : '' }}
                     >
                     <span class="label ml-2" style="margin-bottom: 0;">{{ __('Keep me logged in') }}</span>
                 </label>
