@@ -16,7 +16,16 @@
                 <livewire:search-dropdown />
                 <div class="ml-6">
                     @auth
-                        <a href="#"><img src="{{ asset('/img/avatar.jpg') }}" alt="Avatar" class="rounded-full w-8"></a>
+                        <div class="flex items-center">
+                            <a href="#" class="mr-3">
+                                <img src="{{ asset('/img/avatar.jpg') }}" alt="Avatar" class="rounded-full w-8">
+                            </a>
+
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="link">Log out</button>
+                            </form>
+                        </div>
                     @else
                         <a href="{{ route('login') }}" class="link">Log in</a>
 
