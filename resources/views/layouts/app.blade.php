@@ -21,7 +21,7 @@
                         <a href="{{ route('login') }}" class="link">Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 link">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 link">Sign up</a>
                         @endif
                     @endauth
                 </div>

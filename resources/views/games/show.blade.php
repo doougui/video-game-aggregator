@@ -66,7 +66,7 @@
                     {{ $game['summary'] }}
                 </p>
 
-                <div class="mt-12" x-data="{ isTrailerModalVisible: false }">
+                <div class="mt-5" x-data="{ isTrailerModalVisible: false }">
                     <button
                         @click="isTrailerModalVisible = true"
                         class="button"
