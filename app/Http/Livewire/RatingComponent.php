@@ -11,13 +11,14 @@ class RatingComponent extends Component
      *
      * @param $event
      * @param $game
+     * @param $ratingType
      * @param string $prefix
      */
-    protected function emitEvent($event, $game, $prefix = '')
+    protected function emitEvent($event, $ratingType, $game, $prefix = '')
     {
         $this->emit($event, [
             'slug' => $prefix . '_' . $game['slug'],
-            'rating' => $game['memberRating'] / 100
+            'rating' => $game[$ratingType] / 100
         ]);
     }
 }

@@ -3855,6 +3855,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function initRatingBar() {
   function loadRating(params) {
+    console.log(params.rating);
+    console.log(params.slug);
     var progressBarContainer = document.getElementById(params.slug);
     var bar = new ProgressBar.Circle(progressBarContainer, {
       color: 'white',
@@ -3878,12 +3880,7 @@ function initRatingBar() {
         circle.path.setAttribute('stroke', state.color);
         circle.path.setAttribute('stroke-width', state.width);
         var value = Math.round(circle.value() * 100);
-
-        if (value === 0) {
-          circle.setText('0%');
-        } else {
-          circle.setText(value + '%');
-        }
+        circle.setText(value + '%');
       }
     });
     bar.animate(params.rating);

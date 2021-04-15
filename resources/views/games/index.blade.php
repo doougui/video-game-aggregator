@@ -3,7 +3,7 @@
         <livewire:popular-games />
 
         <div class="flex flex-col lg:flex-row my-10">
-            <livewire:recently-reviewed />
+            <livewire:recently-published />
 
             <div class="lg:w-1/4 mt-12 lg:mt-0">
                 <livewire:most-anticipated />

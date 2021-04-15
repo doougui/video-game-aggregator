@@ -9,7 +9,7 @@ class MemberRating extends RatingComponent
 
     public function rate()
     {
-        $this->emitEvent('gameWithRatingAdded', $this->game, $this->prefix);
+        $this->emitEvent('gameWithRatingAdded', 'memberRating', $this->game, $this->prefix);
     }
 
     public function render()

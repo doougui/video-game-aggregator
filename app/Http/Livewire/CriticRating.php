@@ -9,7 +9,7 @@ class CriticRating extends RatingComponent
 
     public function rate()
     {
-        $this->emitEvent('gameWithRatingAdded', $this->game, $this->prefix);
+        $this->emitEvent('gameWithRatingAdded', 'criticRating', $this->game, $this->prefix);
     }
 
     public function render()
