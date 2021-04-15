@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Http;
 class RecentlyPublished extends GameComponent
 {
     public $games = [];
-    public string $prefix = 'reviewed';
+    public string $prefix = 'published';
 
     public function fetch()
     {
-        $nonformattedGames = Cache::remember('recently-reviewed', 7, function () {
+        $nonformattedGames = Cache::remember('recently-published', 7, function () {
             $before = Carbon::now()->subMonths(2)->timestamp;
             $current = Carbon::now()->timestamp;
 

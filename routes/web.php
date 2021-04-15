@@ -14,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('games', GamesController::class);
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('games', [GamesController::class, 'index'])->name('games.index');
+Route::get('games/{slug}', [GamesController::class, 'show'])->name('games.show');
 Route::redirect('/', '/games');
+
+require __DIR__.'/auth.php';

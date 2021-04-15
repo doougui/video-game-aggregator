@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
     <div class="container mx-auto px-4">
         <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
             <div class="flex-none">
@@ -173,4 +171,4 @@
 
         <livewire:similar-games :baseGame="$game['slug']" />
     </div>
-@endsection
+</x-app-layout>

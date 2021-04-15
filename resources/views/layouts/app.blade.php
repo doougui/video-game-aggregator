@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laracasts Video Games</title>
+    <title>Video Game Aggregator</title>
     @livewireStyles
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -34,7 +34,7 @@
     </header>
 
     <main class="py-8">
-        @yield('content')
+        {{ $slot }}
     </main>
 
     <footer class="border-t border-gray-800">
@@ -45,6 +45,5 @@
 
     @livewireScripts
     <script src="{{ asset('/js/app.js') }}"></script>
-    @stack('scripts')
 </body>
 </html>
