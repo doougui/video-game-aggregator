@@ -31432,6 +31432,15 @@ select {
           animation: bounce 1s infinite;
 }
 
+.link:hover {
+  --tw-text-opacity: 1;
+  color: rgba(156, 163, 175, var(--tw-text-opacity));
+}
+
+.link {
+  text-decoration: underline;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

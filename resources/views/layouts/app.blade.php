@@ -15,7 +15,15 @@
             <div class="flex items-center mt-6 lg:mt-0">
                 <livewire:search-dropdown />
                 <div class="ml-6">
-                    <a href="#"><img src="{{ asset('/img/avatar.jpg') }}" alt="Avatar" class="rounded-full w-8"></a>
+                    @auth
+                        <a href="#"><img src="{{ asset('/img/avatar.jpg') }}" alt="Avatar" class="rounded-full w-8"></a>
+                    @else
+                        <a href="{{ route('login') }}" class="link">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 link">Register</a>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </nav>

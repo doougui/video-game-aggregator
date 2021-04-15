@@ -15,9 +15,9 @@
 
     <footer class="border-t border-gray-800">
         <div class="container mx-auto px-4 py-6">
-            Made with 💖 by <a href="https://github.com/doougui" target="_blank" class="underline hover:text-gray-400" rel="noopener">Doougui</a>
+            Made with 💖 by <a href="https://github.com/doougui" target="_blank" class="link" rel="noopener">Doougui</a>
             &middot;
-            Powered By: <a href="https://www.igdb.com/api" target="_blank" rel="noopener" class="underline hover:text-gray-400">IGDB API</a>
+            Powered By: <a href="https://www.igdb.com/api" target="_blank" rel="noopener" class="link">IGDB API</a>
         </div>
     </footer>
 
