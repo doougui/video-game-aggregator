@@ -6,25 +6,27 @@
         </div>
 
         <div class="mt-3">
-            <x-label for="email" :value="__('Email')" />
-            <x-input id="email"
-                     type="email"
-                     name="email"
-                     placeholder="email@email.com"
-                     value="{{ old('email') }}"
-                     autocomplete="email"
-                     required
-            />
+            <label for="email" class="label">{{ __('Email') }}</label>
+            <input id="email"
+                   class="input"
+                   type="email"
+                   name="email"
+                   placeholder="email@email.com"
+                   value="{{ old('email') }}"
+                   autocomplete="email"
+                   required
+            >
         </div>
 
         <div class="mt-3">
-            <x-label for="password" :value="__('Password')" />
-            <x-input id="password"
-                     type="password"
-                     name="password"
-                     placeholder="********"
-                     required
-            />
+            <label for="password" class="label">{{ __('Password') }}</label>
+            <input id="password"
+                   class="input"
+                   type="password"
+                   name="password"
+                   placeholder="********"
+                   required
+            >
         </div>
     </div>
 </x-app-layout>

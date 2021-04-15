@@ -3855,8 +3855,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function initRatingBar() {
   function loadRating(params) {
-    console.log(params.rating);
-    console.log(params.slug);
     var progressBarContainer = document.getElementById(params.slug);
     var bar = new ProgressBar.Circle(progressBarContainer, {
       color: 'white',
