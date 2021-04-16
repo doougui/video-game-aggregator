@@ -42,11 +42,11 @@
             </div>
 
             <div class="mt-3">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me"
+                <label for="remember" class="inline-flex items-center">
+                    <input id="remember"
                            type="checkbox"
-                           name="remember_me"
-                           {{ old('remember_me') ? 'checked' : '' }}
+                           name="remember"
+                           {{ old('remember') ? 'checked' : '' }}
                     >
                     <span class="label ml-2" style="margin-bottom: 0;">{{ __('Keep me logged in') }}</span>
                 </label>

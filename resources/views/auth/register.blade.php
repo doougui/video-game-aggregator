@@ -26,23 +26,6 @@
             </div>
 
             <div class="mt-3">
-                <label for="nickname" class="label">{{ __('Nickname') }}</label>
-                <input id="nickname"
-                       class="input @error('nickname') border-red-500 @enderror"
-                       type="text"
-                       name="nickname"
-                       placeholder="johndoe"
-                       value="{{ old('nickname') }}"
-                       autocomplete="nickname"
-                       required
-                >
-
-                @error('nickname')
-                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mt-3">
                 <label for="email" class="label">{{ __('Email') }}</label>
                 <input id="email"
                        class="input @error('email') border-red-500 @enderror"
