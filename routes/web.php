@@ -21,9 +21,6 @@ Route::redirect('/', '/games');
 
 require __DIR__.'/auth.php';
 
-Route::get('/nickname', [ChooseNicknameController::class, 'create'])
+Route::get('/nickname', fn() => view('auth.choose-nickname'))
     ->middleware('auth')
     ->name('nickname');
-
-Route::post('/nickname', [ChooseNicknameController::class, 'store'])
-    ->middleware('auth');
