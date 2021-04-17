@@ -1,12 +1,25 @@
 <x-app-layout>
     <div class="form-container">
-        <form action="{{ route('profiles.edit') }}" method="POST">
+        <form action="{{ route('profiles.edit') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <div class="mb-6">
                 <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Edit Profile') }}</h1>
                 <p class="text-gray-400">Edit your desired profile infos</p>
+            </div>
+
+            <div class="mt-3 flex justify-center">
+                <label for="avatar" class="relative cursor-pointer">
+                    <img src="{{ asset('/img/avatar.jpg') }}" alt="Avatar" class="rounded-full w-32">
+                    <span class="w-8 h-8 block bg-blue-500 hover:bg-blue-600 duration-150 rounded-full absolute right-0 bottom-2 flex justify-center items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2">
+                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                        </svg>
+                    </span>
+                </label>
+
+                <input type="file" name="avatar" id="avatar" class="hidden">
             </div>
 
             <div class="flex flex-col lg:flex-row">
