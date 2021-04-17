@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mx-auto px-4">
+    <div class="app-container">
         <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
             <div class="flex-none">
                 <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] }}">
@@ -69,7 +69,7 @@
                 <div class="mt-5" x-data="{ isTrailerModalVisible: false }">
                     <button
                         @click="isTrailerModalVisible = true"
-                        class="button"
+                        class="button button--primary"
                         @if(! $game['trailer']) disabled @endif
                     >
                         <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path></svg>

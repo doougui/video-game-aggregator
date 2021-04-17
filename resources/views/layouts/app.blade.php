@@ -17,7 +17,7 @@
                 <div class="ml-6">
                     @auth
                         <div class="flex items-center">
-                            <a href="#" class="mr-3">
+                            <a href="{{ route('profiles.edit') }}" class="mr-3">
                                 <img src="{{ asset('/img/avatar.jpg') }}" alt="Avatar" class="rounded-full w-8">
                             </a>
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\ChooseNicknameController;
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,12 @@ Route::redirect('/', '/games');
 
 require __DIR__.'/auth.php';
 
-Route::get('/nickname', fn() => view('auth.choose-nickname'))
-    ->middleware('auth')
-    ->name('nickname');
+Route::middleware('auth')->group(function () {
+    Route::get('/nickname', fn() => view('auth.choose-nickname'))
+        ->name('nickname');
+
+    Route::get('/profile', [ProfilesController::class, 'edit'])
+        ->name('profiles.edit');
+
+    Route::put('/profile', [ProfilesController::class, 'update']);
+});

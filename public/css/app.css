@@ -31930,21 +31930,6 @@ select {
 }
 
 .button {
-  --tw-bg-opacity: 1;
-  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
-}
-
-.button:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
-}
-
-.button:disabled {
-  --tw-bg-opacity: 1;
-  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
-}
-
-.button {
   border-radius: 0.25rem;
 }
 
@@ -31973,6 +31958,127 @@ select {
   transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.button--primary {
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
+
+.button--primary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
+}
+
+.button--primary:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
+
+.button--cancel {
+  --tw-bg-opacity: 1;
+  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
+
+.button--cancel:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
+}
+
+.button--cancel:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
+
+.app-container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .app-container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .app-container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .app-container {
+    max-width: 1536px;
+  }
+}
+
+.app-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.form-container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .form-container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .form-container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .form-container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .form-container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .form-container {
+    max-width: 1536px;
+  }
+}
+
+.form-container {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+
+@media (min-width: 1024px) {
+  .form-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 50%;
+  }
 }
 
 @media (min-width: 640px) {

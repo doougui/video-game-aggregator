@@ -25,9 +25,19 @@
         @enderror
     </div>
 
-    <div class="mt-4">
-        <button type="submit" class="button w-full justify-center">
-            Choose Nickname
-        </button>
+    <div class="flex flex-col lg:flex-row">
+        <div class="mt-4 w-full @if(url()->previous() !== route('register')) lg:w-3/4 @endif">
+            <button type="submit" class="button button--primary w-full justify-center">
+                Choose Nickname
+            </button>
+        </div>
+
+        @if(url()->previous() !== route('register'))
+            <div class="mt-4 lg:w-1/4 lg:ml-3">
+                <a href="{{ back()->getTargetUrl() }}" class="button button--cancel w-full justify-center">
+                    Keep current
+                </a>
+            </div>
+        @endif
     </div>
 </form>

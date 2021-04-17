@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="w-2/4 container mx-auto my-5 px-4">
+    <div class="form-container">
         <form action="{{ route('login') }}" method="POST">
             @csrf
 
@@ -53,7 +53,7 @@
             </div>
 
             <div class="mt-4">
-                <button type="submit" class="button w-full justify-center">
+                <button type="submit" class="button button--primary w-full justify-center">
                     Log in
                 </button>
             </div>

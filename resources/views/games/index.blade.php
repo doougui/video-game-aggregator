@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mx-auto px-4">
+    <div class="app-container">
         <livewire:popular-games />
 
         <div class="flex flex-col lg:flex-row my-10">
