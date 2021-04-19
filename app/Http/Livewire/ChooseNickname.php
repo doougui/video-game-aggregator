@@ -11,7 +11,7 @@ class ChooseNickname extends Component
     protected function rules()
     {
         return [
-            'nickname' => 'required|string|max:255|unique:users,nickname,' . auth()->user()->id . '|alpha_dash|',
+            'nickname' => 'required|string|max:255|alpha_dash|unique:users,nickname,' . auth()->user()->id,
         ];
     }
 

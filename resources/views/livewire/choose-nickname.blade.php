@@ -34,7 +34,7 @@
 
         @if(url()->previous() !== route('register'))
             <div class="mt-4 lg:w-1/4 lg:ml-3">
-                <a href="{{ back()->getTargetUrl() }}" class="button button--cancel w-full justify-center">
+                <a href="{{ route('profiles.edit') }}" class="button button--cancel w-full justify-center">
                     Keep current
                 </a>
             </div>

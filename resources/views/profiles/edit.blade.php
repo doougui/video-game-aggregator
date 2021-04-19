@@ -9,6 +9,12 @@
                 <p class="text-gray-400">Edit your desired profile infos</p>
             </div>
 
+            @if(session('success'))
+                <div class="mt-3">
+                    <p class="mt-2 text-green-500 text-xs text-center">{{ session('success') }}</p>
+                </div>
+            @endif
+
             <div class="mt-3 flex justify-center">
                 <label for="avatar" class="relative cursor-pointer">
                     <img src="{{ $user->avatar }}" alt="{{ $user->name }}'s avatar" id="avatar-preview" class="rounded-full w-32">
@@ -125,7 +131,7 @@
                 </div>
 
                 <div class="mt-4 lg:w-1/4 lg:ml-3">
-                    <a href="{{ back()->getTargetUrl() }}" class="button button--cancel w-full justify-center">
+                    <a href="{{ cancel() }}" class="button button--cancel w-full justify-center">
                         Cancel
                     </a>
                 </div>

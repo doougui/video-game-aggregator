@@ -15,3 +15,11 @@ function generateNickname(string $name)
 
     return $nickname;
 }
+
+function cancel() {
+    if (back()->getTargetUrl() === url()->current()) {
+        return route('games.index');
+    }
+
+    return back()->getTargetUrl();
+}
