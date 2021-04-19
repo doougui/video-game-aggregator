@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Image;
 
 class ProfilesController extends Controller
 {
@@ -77,7 +78,9 @@ class ProfilesController extends Controller
 
         if (request('avatar')) {
             $file = $validated['avatar'];
-            $file->store('avatars');
+            $pathToFile = 'storage/' . $file->store('avatars');
+
+            Image::make($pathToFile)->fit(600)->save($pathToFile);
 
             $validated['avatar'] = $file->hashName();
         }
