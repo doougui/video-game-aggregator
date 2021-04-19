@@ -3800,13 +3800,16 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _rating__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rating */ "./resources/js/rating.js");
+/* harmony import */ var _modules_rating__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/rating */ "./resources/js/modules/rating.js");
+/* harmony import */ var _modules_avatar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/avatar */ "./resources/js/modules/avatar.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 
-(0,_rating__WEBPACK_IMPORTED_MODULE_0__.default)();
+
+(0,_modules_rating__WEBPACK_IMPORTED_MODULE_0__.default)();
+(0,_modules_avatar__WEBPACK_IMPORTED_MODULE_1__.default)();
 
 /***/ }),
 
@@ -3842,10 +3845,49 @@ window.ProgressBar = __webpack_require__(/*! progressbar.js */ "./node_modules/p
 
 /***/ }),
 
-/***/ "./resources/js/rating.js":
-/*!********************************!*\
-  !*** ./resources/js/rating.js ***!
-  \********************************/
+/***/ "./resources/js/modules/avatar.js":
+/*!****************************************!*\
+  !*** ./resources/js/modules/avatar.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ initAvatar)
+/* harmony export */ });
+function initAvatar() {
+  var avatarPreview = document.querySelector('#avatar-preview');
+  if (!avatarPreview) return;
+
+  function showAvatarPreview(e) {
+    if (!e.target.files.length) return;
+    var allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+    var file = e.target.files[0];
+
+    if (allowedTypes.includes(file.type)) {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = function (e) {
+        avatarPreview.src = e.target.result;
+      };
+    }
+  }
+
+  var avatarInput = document.querySelector('#avatar');
+
+  if (avatarInput) {
+    avatarInput.addEventListener('change', showAvatarPreview);
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/modules/rating.js":
+/*!****************************************!*\
+  !*** ./resources/js/modules/rating.js ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

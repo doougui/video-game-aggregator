@@ -18,7 +18,7 @@
                     @auth
                         <div class="flex items-center">
                             <a href="{{ route('profiles.edit') }}" class="mr-3">
-                                <img src="{{ auth()->user()->avatar }}" alt="Avatar" class="rounded-full w-8">
+                                <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}'s avatar" class="rounded-full w-8">
                             </a>
 
                             <form action="{{ route('logout') }}" method="POST">
