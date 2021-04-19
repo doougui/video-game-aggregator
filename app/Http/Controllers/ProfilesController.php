@@ -75,7 +75,12 @@ class ProfilesController extends Controller
             'password' => 'nullable|between:8,25|confirmed',
         ]);
 
-        if (request('avatar')) $validated['avatar'] = request('avatar')->store('avatars');
+        if (request('avatar')) {
+            $file = $validated['avatar'];
+            $file->store('avatars');
+
+            $validated['avatar'] = $file->hashName();
+        }
 
         auth()->user()->update($validated);
 

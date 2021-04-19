@@ -58,6 +58,6 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        return asset($value ? "storage/{$value}" : '/img/avatar.jpg');
+        return asset($value ? "storage/avatars/{$value}" : '/img/avatar.jpg');
     }
 }
