@@ -11,7 +11,7 @@
 
             <div class="mt-3 flex justify-center">
                 <label for="avatar" class="relative cursor-pointer">
-                    <img src="{{ asset('/img/avatar.jpg') }}" alt="Avatar" class="rounded-full w-32">
+                    <img src="{{ $user->avatar }}" alt="Avatar" class="rounded-full w-32">
                     <span class="w-8 h-8 block bg-blue-500 hover:bg-blue-600 duration-150 rounded-full absolute right-0 bottom-2 flex justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2">
                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
@@ -21,6 +21,10 @@
 
                 <input type="file" name="avatar" id="avatar" class="hidden">
             </div>
+
+            @error('avatar')
+                <p class="mt-2 text-red-500 text-xs text-center">{{ $message }}</p>
+            @enderror
 
             <div class="flex flex-col lg:flex-row">
                 <div class="mt-3 lg:w-3/4">
@@ -44,7 +48,7 @@
                     <label for="change_nickname" class="label" onclick="document.querySelector('#change_nickname').click();">Nickname</label>
                     <a id="change_nickname"
                        href="{{ route('nickname') }}"
-                       class="button button--primary border border-blue-500 w-full justify-center text-sm"
+                       class="button button--primary border border-blue-500 hover:border-blue-600 w-full justify-center text-sm"
                     >
                         Change
                     </a>
@@ -64,6 +68,22 @@
                 >
 
                 @error('email')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-3">
+                <label for="bio" class="label">{{ __('bio') }}</label>
+                <textarea
+                    name="bio"
+                    id="bio"
+                    cols="30"
+                    rows="5"
+                    placeholder="I'm a gamer, a natural gamer"
+                    class="input @error('bio') border-red-500 @enderror"
+                >{{ $user->bio }}</textarea>
+
+                @error('bio')
                     <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>

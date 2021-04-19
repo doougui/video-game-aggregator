@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProfilesController extends Controller
 {
@@ -62,13 +63,23 @@ class ProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request  $request
-     * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, User $user)
+    public function update()
     {
-        //
+        $validated = request()->validate([
+            'name' => 'required|string|max:255',
+            'bio' => 'nullable|string|max:1024',
+            'avatar' => 'file|mimes:jpg,png,jpeg|max:1000',
+            'email' => 'string|required|email|max:255|unique:users,email,' . auth()->user()->id,
+            'password' => 'nullable|between:8,25|confirmed',
+        ]);
+
+        if (request('avatar')) $validated['avatar'] = request('avatar')->store('avatars');
+
+        auth()->user()->update($validated);
+
+        return redirect(route('profiles.edit'));
     }
 
     /**
