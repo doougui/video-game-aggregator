@@ -1,36 +1,43 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-        </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
+<x-app-layout>
+    <div class="form-container">
+        <form action="{{ route('password.email') }}" method="POST">
             @csrf
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <div class="mb-6">
+                <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Forgot My Password') }}</h1>
+                <p class="text-gray-400">Enter your email and follow the instructions to recover your account.</p>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
+            <div class="mt-3">
+                <label for="email" class="label">{{ __('Email') }}</label>
+                <input id="email"
+                       class="input @error('email') border-red-500 @enderror"
+                       type="email"
+                       name="email"
+                       placeholder="email@email.com"
+                       value="{{ old('email') }}"
+                       autocomplete="email"
+                       required
+                >
+
+                @if(session('status'))
+                    <p class="mt-2 text-green-500 text-xs">{{ session('status') }}</p>
+                @endif
+
+                @error('email')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="button button--primary w-full justify-center">
+                    Recover
+                </button>
+            </div>
+
+            <div class="mt-3 text-center">
+                <a href="{{ route('login') }}" class="link text-blue-500">Log in</a>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</x-app-layout>
