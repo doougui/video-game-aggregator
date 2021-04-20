@@ -66,9 +66,9 @@ class GamesController extends Controller
                 'cover_big',
                 $game['cover']['url']
             ) : asset('/img/cover_not_found.jpg'),
-            'genres' => collect($game['genres'])->pluck('name')->filter()->implode(', '),
-            'involvedCompanies' => collect($game['involved_companies'])->pluck('company.name')->filter()->implode(', '),
-            'platforms' => collect($game['platforms'])->pluck('abbreviation')->filter()->implode(', '),
+            'genres' => collect($game['genres'] ?? null)->pluck('name')->filter()->implode(', '),
+            'involvedCompanies' => collect($game['involved_companies'] ?? null)->pluck('company.name')->filter()->implode(', '),
+            'platforms' => collect($game['platforms'] ?? null)->pluck('abbreviation')->filter()->implode(', '),
             'trailer' => isset($game['videos'][0]['video_id'])
                 ? 'https://youtube.com/embed/'.$game['videos'][0]['video_id']
                 : null,
@@ -78,21 +78,21 @@ class GamesController extends Controller
             'criticRating' => isset($game['aggregated_rating'])
                 ? round($game['aggregated_rating'])
                 : null,
-            'screenshots' => collect($game['screenshots'])->map(function ($screenshot) {
+            'screenshots' => collect($game['screenshots'] ?? null)->map(function ($screenshot) {
                 return [
                   'huge' => Str::replaceFirst('thumb', 'screenshot_huge', $screenshot['url']),
                   'big' => Str::replaceFirst('thumb', 'screenshot_big', $screenshot['url'])
                 ];
             })->take(9),
             'social' => [
-                'website' => collect($game['websites'])->first(),
-                'facebook' => collect($game['websites'])->filter(function ($website) {
+                'website' => collect($game['websites'] ?? null)->first(),
+                'facebook' => collect($game['websites'] ?? null)->filter(function ($website) {
                    return Str::contains($website['url'], 'facebook');
                 })->first(),
-                'twitter' => collect($game['websites'])->filter(function ($website) {
+                'twitter' => collect($game['websites'] ?? null)->filter(function ($website) {
                     return Str::contains($website['url'], 'twitter');
                 })->first(),
-                'instagram' => collect($game['websites'])->filter(function ($website) {
+                'instagram' => collect($game['websites'] ?? null)->filter(function ($website) {
                     return Str::contains($website['url'], 'instagram');
                 })->first(),
             ]

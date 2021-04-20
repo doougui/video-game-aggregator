@@ -50,11 +50,10 @@ class GameComponent extends Component
                 'rating' => isset($game['rating'])
                     ? round($game['rating'])
                     : null,
-                'platforms' => isset($game['platforms']) ? collect($game['platforms'])
+                'platforms' => collect($game['platforms'] ?? null)
                     ->pluck('abbreviation')
                     ->filter()
                     ->implode(', ')
-                    : 'No specified platform(s)'
             ])->toArray();
         });
     }

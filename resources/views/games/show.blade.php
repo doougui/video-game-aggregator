@@ -2,22 +2,22 @@
     <div class="app-container">
         <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
             <div class="flex-none">
-                <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] }}">
+                <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] ?? 'No specified name' }}">
             </div>
             <div class="lg:ml-12 lg:mr-64">
-                <h2 class="font-semibold text-4xl leading-tight mt-1">{{ $game['name'] }}</h2>
+                <h2 class="font-semibold text-4xl leading-tight mt-1">{{ $game['name'] ?? 'No specified name' }}</h2>
 
                 <div class="text-gray-400">
                     <span>
-                        {{ $game['genres'] }}
+                        {{ $game['genres'] ?? 'No specified genres' }}
                     </span>
                     &middot;
                     <span>
-                        {{ $game['involvedCompanies'] }}
+                        {{ $game['involvedCompanies'] ?? 'No involved companies specified' }}
                     </span>
                     &middot;
                     <span>
-                        {{ $game['platforms'] }}
+                        {{ $game['platforms'] ?? 'No specified platforms' }}
                     </span>
                 </div>
 
@@ -63,7 +63,7 @@
                 </div>
 
                 <p class="mt-12">
-                    {{ $game['summary'] }}
+                    {{ $game['summary'] ?? 'Summary not available' }}
                 </p>
 
                 <div class="mt-5" x-data="{ isTrailerModalVisible: false }">
@@ -124,7 +124,7 @@
             <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Images</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
-                @foreach($game['screenshots'] as $screenshot)
+                @forelse($game['screenshots'] as $screenshot)
                     <div>
                         <a
                             @click.prevent="
@@ -133,10 +133,12 @@
                             "
                             href="#"
                         >
-                            <img src="{{ $screenshot['big'] }}" alt="{{ $game['name'] }}" class="hover:opacity-75 transition ease-in-out duration-150">
+                            <img src="{{ $screenshot['big'] }}" alt="{{ $game['name'] ?? 'No specified name' }}" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                     </div>
-                @endforeach
+                @empty
+                    <p class="text-sm text-gray-500">No screenshots found</p>
+                @endforelse
             </div>
 
             <template x-if="isImageModalVisible">
@@ -161,7 +163,7 @@
                                 </button>
                             </div>
                             <div class="modal-body p-8">
-                                <img :src="image" alt="{{ $game['name'] }}">
+                                <img :src="image" alt="{{ $game['name'] ?? 'No specified name' }}">
                             </div>
                         </div>
                     </div>
