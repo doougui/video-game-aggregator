@@ -1,48 +1,72 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.update') }}">
+<x-app-layout>
+    <div class="form-container">
+        <form action="{{ route('password.update') }}" method="POST">
             @csrf
 
-            <!-- Password Reset Token -->
+            <div class="mb-6">
+                <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Reset Your Password') }}</h1>
+                <p class="text-gray-400">Confirm your email and type your new desired password.</p>
+            </div>
+
+            @if(session('status'))
+                <p class="mt-2 text-green-500 text-xs text-center">{{ session('status') }}</p>
+            @endif
+
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+            <div class="mt-3">
+                <label for="email" class="label">{{ __('Email Confirmation') }}</label>
+                <input id="email"
+                       class="input @error('email') border-red-500 @enderror"
+                       type="email"
+                       name="email"
+                       placeholder="email@email.com"
+                       value="{{ old('email') }}"
+                       autocomplete="email"
+                       required
+                >
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                @error('email')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
             </div>
 
-            <!-- Password -->
+            <div class="mt-3">
+                <label for="password" class="label">{{ __('Password') }}</label>
+                <input id="password"
+                       class="input @error('password') border-red-500 @enderror"
+                       type="password"
+                       name="password"
+                       placeholder="********"
+                       autocomplete="current-password"
+                       required
+                >
+
+                @error('password')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-3">
+                <label for="password" class="label">{{ __('Password Confirmation') }}</label>
+                <input id="password_confirmation"
+                       class="input @error('password_confirmation') border-red-500 @enderror"
+                       type="password"
+                       name="password_confirmation"
+                       placeholder="********"
+                       required
+                >
+
+                @error('password_confirmation')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
+                <button type="submit" class="button button--primary w-full justify-center">
+                    Change Password
+                </button>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</x-app-layout>
