@@ -26,3 +26,31 @@
 .form-container {
     @apply w-3/4 lg:w-2/4 container mx-auto my-5 lg:px-4;
 }
+.discord {
+    background-color: #7289DA;
+}
+.discord:hover {
+    background-color: #4e5d94;
+}
+.twitch {
+    background-color: #5c16c5;
+}
+.twitch:hover {
+    background-color: #772ce8;
+}
+.form-separator::before,
+.form-separator::after {
+    content: '';
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4a5568;
+    position: absolute;
+    width: calc(50% - 80px);
+    height: 2px;
+}
+.form-separator::before {
+    left: 0;
+}
+.form-separator::after {
+    right: 0;
+}
