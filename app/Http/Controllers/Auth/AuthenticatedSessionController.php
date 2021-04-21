@@ -55,10 +55,17 @@ class AuthenticatedSessionController extends Controller
     {
         $socialiteUser = Socialite::driver($provider)->user();
 
+        /**
+         * The callback function inside the where clause wraps the
+         * condition inside parenthesis. The final query will be:
+         * select * from `users` where `email` = ? and (`provider` != '? or `provider_id` != ?);
+         */
         $registeredUser = User::where('email', $socialiteUser->getEmail())
-                            ->where('provider', '!=', $provider)
-                            ->orWhere('provider_id', $socialiteUser->getId())
-                            ->first();
+                            ->where(function ($query) use ($provider, $socialiteUser) {
+                                $query
+                                    ->where('provider', '!=', $provider)
+                                    ->orWhere('provider_id', '!=', $socialiteUser->getId());
+                            })->first();
 
         if ($registeredUser) {
             return redirect(route('login'))
@@ -82,7 +89,7 @@ class AuthenticatedSessionController extends Controller
 
         auth()->login($user, true);
 
-        return redirect(route('games'));
+        return redirect(route('games.index'));
     }
 
     /**
