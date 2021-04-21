@@ -14,8 +14,11 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
         "laravel/framework": "^8.12",
+        "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.4"
+        "livewire/livewire": "^2.4",
+        "socialiteproviders/discord": "^4.1",
+        "socialiteproviders/twitch": "^5.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -33,10 +33,10 @@
     background-color: #4e5d94;
 }
 .twitch {
-    background-color: #5c16c5;
+    background-color: #772ce8;
 }
 .twitch:hover {
-    background-color: #772ce8;
+    background-color: #5c16c5;
 }
 .form-separator::before,
 .form-separator::after {

@@ -24,6 +24,14 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest');
 
+Route::get('/auth/{provider}/redirect', [AuthenticatedSessionController::class, 'redirectToProvider'])
+                ->middleware('guest')
+                ->name('auth.social.redirect');
+
+Route::get('/auth/{provider}/callback', [AuthenticatedSessionController::class, 'handleProviderCallback'])
+                ->middleware('guest')
+                ->name('auth.social.callback');
+
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->middleware('guest')
                 ->name('password.request');

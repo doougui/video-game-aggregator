@@ -33,5 +33,11 @@ return [
     'igdb' => [
         'Client-ID' => env('IGDB_CLIENT_ID'),
         'Authorization' => "Bearer " . env('IGDB_ACCESS_TOKEN')
-    ]
+    ],
+
+    'discord' => [
+        'client_id' => env('DISCORD_CLIENT_ID'),
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),
+        'redirect' => env('DISCORD_REDIRECT_URI'),
+    ],
 ];

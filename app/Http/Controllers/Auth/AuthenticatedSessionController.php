@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -33,6 +36,53 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * @param $provider
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    /**
+     * @param $provider
+     * @throws ValidationException
+     */
+    public function handleProviderCallback($provider)
+    {
+        $socialiteUser = Socialite::driver($provider)->user();
+
+        $registeredUser = User::where('email', $socialiteUser->getEmail())
+                            ->where('provider', '!=', $provider)
+                            ->orWhere('provider_id', $socialiteUser->getId())
+                            ->first();
+
+        if ($registeredUser) {
+            return redirect(route('login'))
+                ->withErrors(['email' => __('auth.wrong_method')]);
+        }
+
+        $user = User::firstOrCreate(
+            [
+                'provider' => $provider,
+                'provider_id' => $socialiteUser->getId(),
+            ],
+            [
+                'email' => $socialiteUser->getEmail(),
+                'nickname' => $socialiteUser->getNickname(),
+                'name' => $socialiteUser->getName(),
+                'avatar' => $socialiteUser->getAvatar(),
+                'provider' => $provider,
+                'provider_id' => $socialiteUser->getId(),
+            ]
+        );
+
+        auth()->login($user, true);
+
+        return redirect(route('games'));
     }
 
     /**
