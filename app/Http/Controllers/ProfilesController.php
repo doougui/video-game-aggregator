@@ -73,8 +73,13 @@ class ProfilesController extends Controller
             'bio' => 'nullable|string|max:1024',
             'avatar' => 'file|mimes:jpg,png,jpeg|max:1000',
             'email' => 'string|required|email|max:255|unique:users,email,' . auth()->user()->id,
-            'password' => 'nullable|between:8,25|confirmed',
         ]);
+
+        if (! auth()->user()->validate) {
+            $validated = array_merge($validated, request()->validate([
+               'password' => 'nullable|between:8,25|confirmed'
+            ]));
+        }
 
         if (request('avatar')) {
             $file = $validated['avatar'];

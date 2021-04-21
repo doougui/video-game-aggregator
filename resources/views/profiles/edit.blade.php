@@ -94,34 +94,39 @@
                 @enderror
             </div>
 
-            <div class="mt-3">
-                <label for="password" class="label">{{ __('Password') }}</label>
-                <input id="password"
-                       class="input @error('password') border-red-500 @enderror"
-                       type="password"
-                       name="password"
-                       placeholder="********"
-                       autocomplete="new-password"
-                >
+            @if(! $user->provider)
+                <div class="mt-3">
+                    <label for="password" class="label">{{ __('Password') }}</label>
+                    <input id="password"
+                           class="input @error('password') border-red-500 @enderror"
+                           type="password"
+                           name="password"
+                           placeholder="********"
+                           autocomplete="new-password"
+                    >
 
-                @error('password')
-                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
-                @enderror
-            </div>
+                    @error('password')
+                        <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                    @enderror
+                </div>
 
-            <div class="mt-3">
-                <label for="password" class="label">{{ __('Password Confirmation') }}</label>
-                <input id="password_confirmation"
-                       class="input @error('password_confirmation') border-red-500 @enderror"
-                       type="password"
-                       name="password_confirmation"
-                       placeholder="********"
-                >
+                <div class="mt-3">
+                    <label for="password" class="label">{{ __('Password Confirmation') }}</label>
+                    <input id="password_confirmation"
+                           class="input @error('password_confirmation') border-red-500 @enderror"
+                           type="password"
+                           name="password_confirmation"
+                           placeholder="********"
+                    >
 
-                @error('password_confirmation')
-                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
-                @enderror
-            </div>
+                    @error('password_confirmation')
+                        <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                    @enderror
+                </div>
+            @else
+                <p class="mt-2 text-red-500 text-sm">* Since you are logged in with
+                    {{ ucfirst($user->provider) }}, you cannot change your password.</p>
+            @endif
 
             <div class="flex flex-col lg:flex-row">
                 <div class="mt-4 lg:w-3/4">
