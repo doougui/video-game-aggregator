@@ -54,3 +54,9 @@
 .form-separator::after {
     right: 0;
 }
+.list-item {
+    @apply border-b border-gray-700;
+}
+.list-link {
+    @apply block flex items-center transition ease-in-out duration-150 hover:bg-gray-700 p-3;
+}

@@ -16,15 +16,33 @@
                 <livewire:search-dropdown />
                 <div class="ml-6">
                     @auth
-                        <div class="flex items-center">
-                            <a href="{{ route('profiles.edit') }}" class="mr-3">
+                        <div class="flex items-center relative" x-data="{ isOpen: false }" @click.away="isOpen = false">
+                            <a href="#" class="mr-3" @click.prevent="isOpen = ! isOpen" aria-haspopup="true" :aria-expanded="isOpen">
                                 <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}'s avatar" class="rounded-full w-8">
                             </a>
 
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="link">Log out</button>
-                            </form>
+                            <div class="absolute right-0 top-7 mr-3 z-50 bg-gray-800 text-xs rounded whitespace-nowrap w-32 mt-2" x-show.transition.opacity.duration.200="isOpen">
+                                <ul>
+                                    <li class="list-item">
+                                        <a href="{{ route('profiles.edit') }}" class="list-link w-full">
+                                            My Profile
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+
+                                            <button
+                                                type="submit"
+                                                class="list-link text-red-500 w-full"
+                                                @keydown.tab="isOpen = false"
+                                            >
+                                                Log out
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     @else
                         <a href="{{ route('login') }}" class="link">Log in</a>

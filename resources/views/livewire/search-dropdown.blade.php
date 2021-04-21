@@ -30,10 +30,10 @@
         <div class="absolute z-50 bg-gray-800 text-xs rounded w-64 mt-2" x-show.transition.opacity.duration.200="visible">
             <ul>
                 @forelse($results as $game)
-                    <li class="border-b border-gray-700">
+                    <li class="list-item">
                         <a
                             href="{{ route('games.show', $game['slug']) }}"
-                            class="block flex items-center transition ease-in-out duration-150 hover:bg-gray-700 p-3"
+                            class="list-link"
                             @if($loop->last) @keydown.tab="visible = false" @endif
                         >
                             @isset($game['cover'])
