@@ -75,7 +75,7 @@ class ProfilesController extends Controller
             'email' => 'string|required|email|max:255|unique:users,email,' . auth()->user()->id,
         ]);
 
-        if (! auth()->user()->validate) {
+        if (! auth()->user()->provider) {
             $validated = array_merge($validated, request()->validate([
                'password' => 'nullable|between:8,25|confirmed'
             ]));
