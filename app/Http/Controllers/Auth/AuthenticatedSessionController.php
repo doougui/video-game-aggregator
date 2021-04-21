@@ -89,6 +89,8 @@ class AuthenticatedSessionController extends Controller
 
         auth()->login($user, true);
 
+        request()->session()->regenerate();
+
         return redirect(route('games.index'));
     }
 
