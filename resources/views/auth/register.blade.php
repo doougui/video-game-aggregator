@@ -5,7 +5,7 @@
 
             <div class="mb-6">
                 <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Sign up') }}</h1>
-                <p class="text-gray-400">Join us and enjoy your gaming hours with an awesome community of gamers.</p>
+                <p class="text-gray-400">{{ __('Join us and enjoy your gaming hours with an awesome community of gamers.') }}</p>
             </div>
 
             <div class="mt-3 flex">
@@ -40,7 +40,7 @@
             </div>
 
             <div class="mt-4 mb-3 form-separator text-center text-sm text-gray-300 relative">
-                Or sign up with email
+                {{ __('Or sign up with email') }}
             </div>
 
             <div>
@@ -94,7 +94,7 @@
             </div>
 
             <div class="mt-3">
-                <label for="password" class="label">{{ __('Password Confirmation') }}</label>
+                <label for="password" class="label">{{ __('Confirm Password') }}</label>
                 <input id="password_confirmation"
                        class="input @error('password_confirmation') border-red-500 @enderror"
                        type="password"
@@ -126,12 +126,12 @@
 
             <div class="mt-4">
                 <button type="submit" class="button button--primary w-full justify-center">
-                    Sign up
+                    {{ __('Sign up') }}
                 </button>
             </div>
 
             <div class="mt-3 text-center">
-                <p class="text-gray-300">Already have an account? <a href="{{ route('login') }}" class="link text-blue-500">Log in</a>.</p>
+                <p class="text-gray-300">{{ __('Already have an account?') }} <a href="{{ route('login') }}" class="link text-blue-500">{{ __('Log in') }}</a>.</p>
             </div>
         </form>
     </div>
