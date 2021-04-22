@@ -1,6 +1,7 @@
 {
     "Name": "Nome",
     "E-Mail Address": "Email",
+    "Bio": "Sobre",
     "Password": "Senha",
     "Confirm": "Confirmar",
     "Confirm Password": "Confirmação de senha",
@@ -10,6 +11,9 @@
     "Forgot Your Password?": "Esqueceu sua senha?",
     "Forgot your password?": "Esqueceu sua senha?",
     "Forgot My Password":  "Esqueci minha senha",
+    "Change": "Trocar",
+    "Edit": "Editar",
+    "Cancel": "Cancelar",
     "Enter your email and follow the instructions to recover your account.": "Digite o seu email e siga as instruções para recuperar sua conta.",
     "Recover": "Recuperar",
     "Already registered?": "Já registrado?",
@@ -97,5 +101,11 @@
     "Images": "Imagens",
     "No images found": "Nenhuma imagem encontrada",
     "Member <br> Score": "Nota de <br> membros",
-    "Critic <br> Score": "Nota da <br> crítica"
+    "Critic <br> Score": "Nota da <br> crítica",
+    "Edit Profile": "Editar perfil",
+    "Edit your desired profile infos": "Edite as informações de perfil desejadas",
+    "Profile information successfully updated": "Informações de perfil atualizadas com sucesso",
+    "Preview image may not be completely accurate": "Imagem de pré-visualização pode não ser completamente fiel à imagem final",
+    "I'm a gamer": "Eu sou um jogador",
+    "* Since you are logged in with :provider, you cannot change your password.": "* Como você está autenticado com a sua conta :provider, você não pode trocar a senha da sua conta."
 }

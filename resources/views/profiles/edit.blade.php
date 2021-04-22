@@ -6,7 +6,7 @@
 
             <div class="mb-6">
                 <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Edit Profile') }}</h1>
-                <p class="text-gray-400">Edit your desired profile infos</p>
+                <p class="text-gray-400">{{ __('Edit your desired profile infos') }}</p>
             </div>
 
             @if(session('success'))
@@ -17,7 +17,7 @@
 
             <div class="mt-3 flex justify-center">
                 <label for="avatar" class="relative cursor-pointer">
-                    <img src="{{ $user->avatar }}" alt="{{ $user->name }}'s avatar" id="avatar-preview" class="rounded-full w-32" title="Preview image may not be completely accurate">
+                    <img src="{{ $user->avatar }}" alt="{{ $user->name }}'s avatar" id="avatar-preview" class="rounded-full w-32" title="{{ __('Preview image may not be completely accurate') }}">
                     <span class="w-8 h-8 block bg-blue-500 hover:bg-blue-600 duration-150 rounded-full absolute right-0 bottom-2 flex justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2">
                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
@@ -51,12 +51,12 @@
                 </div>
 
                 <div class="mt-3 lg:w-1/4 lg:ml-3">
-                    <label for="change_nickname" class="label" onclick="document.querySelector('#change_nickname').click();">Nickname</label>
+                    <label for="change_nickname" class="label" onclick="document.querySelector('#change_nickname').click();">{{ __('Nickname') }}</label>
                     <a id="change_nickname"
                        href="{{ route('nickname') }}"
                        class="button button--primary border border-blue-500 hover:border-blue-600 w-full justify-center text-sm"
                     >
-                        Change
+                        {{ __('Change') }}
                     </a>
                 </div>
             </div>
@@ -79,13 +79,13 @@
             </div>
 
             <div class="mt-3">
-                <label for="bio" class="label">{{ __('bio') }}</label>
+                <label for="bio" class="label">{{ __('Bio') }}</label>
                 <textarea
                     name="bio"
                     id="bio"
                     cols="30"
                     rows="5"
-                    placeholder="I'm a gamer, a natural gamer"
+                    placeholder="{{ __('I\'m a gamer') }}"
                     class="input @error('bio') border-red-500 @enderror"
                 >{{ $user->bio }}</textarea>
 
@@ -124,20 +124,19 @@
                     @enderror
                 </div>
             @else
-                <p class="mt-2 text-red-500 text-sm">* Since you are logged in with
-                    {{ ucfirst($user->provider) }}, you cannot change your password.</p>
+                <p class="mt-2 text-red-500 text-sm">{{ __('* Since you are logged in with :provider, you cannot change your password.', ['provider' => ucfirst($user->provider)]) }}</p>
             @endif
 
             <div class="flex flex-col lg:flex-row">
                 <div class="mt-4 lg:w-3/4">
                     <button type="submit" class="button button--primary w-full justify-center">
-                        Edit
+                        {{ __('Edit') }}
                     </button>
                 </div>
 
                 <div class="mt-4 lg:w-1/4 lg:ml-3">
                     <a href="{{ cancel() }}" class="button button--cancel w-full justify-center">
-                        Cancel
+                        {{ __('Cancel') }}
                     </a>
                 </div>
             </div>

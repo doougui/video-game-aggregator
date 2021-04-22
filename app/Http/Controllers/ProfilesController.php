@@ -93,7 +93,7 @@ class ProfilesController extends Controller
         auth()->user()->update($validated);
 
         return redirect(route('profiles.edit'))
-            ->with('success', 'Profile information successfully updated');
+            ->with('success', __('Profile information successfully updated'));
     }
 
     /**
