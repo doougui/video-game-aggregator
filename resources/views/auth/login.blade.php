@@ -5,7 +5,7 @@
 
             <div class="mb-6">
                 <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Log in') }}</h1>
-                <p class="text-gray-400">Log in to be able to track your gaming activity and share your experiences.</p>
+                <p class="text-gray-400">{{ __('Log in to be able to track your gaming activity and share your experiences.') }}</p>
             </div>
 
             <div class="mt-3 flex">
@@ -40,7 +40,7 @@
             </div>
 
             <div class="mt-4 mb-3 form-separator text-center text-sm text-gray-300 relative">
-                Or login with email
+                {{ __('Or login with email') }}
             </div>
 
             <div>
@@ -83,22 +83,22 @@
                            name="remember"
                            {{ old('remember') ? 'checked' : '' }}
                     >
-                    <span class="label ml-2" style="margin-bottom: 0;">{{ __('Keep me logged in') }}</span>
+                    <span class="label ml-2" style="margin-bottom: 0;">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <div class="mt-4">
                 <button type="submit" class="button button--primary w-full justify-center">
-                    Log in
+                    {{ __('Log in') }}
                 </button>
             </div>
 
             <div class="mt-3 text-center">
-                <p class="text-gray-300">Don't have an account? <a href="{{ route('register') }}" class="link text-blue-500">Sign up</a>.</p>
+                <p class="text-gray-300">{{ __('Don\'t have an account?') }} <a href="{{ route('register') }}" class="link text-blue-500">{{ __('Sign up') }}</a>.</p>
             </div>
 
             <div class="mt-3 text-center">
-                <a href="{{ route('password.request') }}" class="link text-blue-500">Forgot your password?</a>
+                <a href="{{ route('password.request') }}" class="link text-blue-500">{{ __('Forgot your password?') }}</a>
             </div>
         </form>
     </div>
