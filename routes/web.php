@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\ChooseNicknameController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('games', [GamesController::class, 'index'])->name('games.index');
-Route::get('games/{slug}', [GamesController::class, 'show'])->name('games.show');
-Route::redirect('/', '/games');
+Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+    Route::get('games', [GamesController::class, 'index'])->name('games.index');
+    Route::get('games/{slug}', [GamesController::class, 'show'])->name('games.show');
+    Route::redirect('/', '/games');
 
-require __DIR__.'/auth.php';
+    require __DIR__.'/auth.php';
 
-Route::middleware('auth')->group(function () {
-    Route::get('/nickname', fn() => view('auth.choose-nickname'))
-        ->name('nickname');
+    Route::middleware('auth')->group(function () {
+        Route::get('/nickname', fn() => view('auth.choose-nickname'))
+            ->name('nickname');
 
-    Route::get('/profile', [ProfilesController::class, 'edit'])
-        ->name('profiles.edit');
+        Route::get('/profile', [ProfilesController::class, 'edit'])
+            ->name('profiles.edit');
 
-    Route::put('/profile', [ProfilesController::class, 'update']);
+        Route::put('/profile', [ProfilesController::class, 'update']);
+    });
 });

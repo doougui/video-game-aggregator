@@ -405,7 +405,7 @@ class ViewGameTest extends TestCase
                         "category" => 3,
                         "game" => 109462,
                         "trusted" => true,
-                        "url" => "https://en.wikipedia.org/wiki/Animal_Crossing:_New_Horizons",
+                        "url" => "https://en-US.wikipedia.org/wiki/Animal_Crossing:_New_Horizons",
                     ],
                     3 => [
                         "id" => 137604,
