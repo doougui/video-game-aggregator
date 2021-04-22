@@ -6,9 +6,9 @@
                     <img src="{{ asset('/img/laracasts-logo.svg') }}" alt="Video Game Aggregator" class="w-32 flex-none">
                 </a>
                 <ul class="flex ml-0 lg:ml-16 space-x-8 mt-6 lg:mt-0">
-                    <li><a href="{{ route('games.index') }}" class="hover:text-gray-400">Games</a></li>
-                    <li><a href="#" class="hover:text-gray-400">Reviews</a></li>
-                    <li><a href="#" class="hover:text-gray-400">Coming Soon</a></li>
+                    <li><a href="{{ route('games.index') }}" class="hover:text-gray-400">{{ __('Games') }}</a></li>
+                    <li><a href="#" class="hover:text-gray-400">{{ __('Reviews') }}</a></li>
+                    <li><a href="#" class="hover:text-gray-400">{{ __('Coming Soon') }}</a></li>
                 </ul>
             </div>
 
@@ -25,7 +25,7 @@
                                 <ul>
                                     <li class="list-item">
                                         <a href="{{ route('profiles.edit') }}" class="list-link w-full">
-                                            My Profile
+                                            {{ __('My Profile') }}
                                         </a>
                                     </li>
                                     <li class="list-item">
@@ -37,7 +37,7 @@
                                                 class="list-link text-red-500 w-full"
                                                 @keydown.tab="isOpen = false"
                                             >
-                                                Log out
+                                                {{ __('Log out') }}
                                             </button>
                                         </form>
                                     </li>
@@ -45,10 +45,10 @@
                             </div>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" class="link">Log in</a>
+                        <a href="{{ route('login') }}" class="link">{{ __('Log in') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 link">Sign up</a>
+                            <a href="{{ route('register') }}" class="ml-4 link">{{ __('Sign up') }}</a>
                         @endif
                     @endauth
                 </div>

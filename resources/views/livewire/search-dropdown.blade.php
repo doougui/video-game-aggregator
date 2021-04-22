@@ -2,7 +2,7 @@
     <input wire:model.debouce.300ms="search"
            type="text"
            class="bg-gray-800 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 px-3 pl-8 py-1"
-           placeholder="Search (Press '/' to focus)"
+           placeholder="{{ __('Search (Press \'/\' to focus)') }}"
            x-ref="search"
            @keydown.window="
                 if (event.keyCode === 191) {
@@ -43,7 +43,7 @@
                         </a>
                     </li>
                 @empty
-                    <li class="p-3">No results for "{{ $search }}".</li>
+                    <li class="p-3">{{ __('No results for') }} "{{ $search }}".</li>
                 @endforelse
             </ul>
         </div>

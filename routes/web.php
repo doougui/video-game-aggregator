@@ -16,7 +16,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function () {
     Route::get('games', [GamesController::class, 'index'])->name('games.index');
     Route::get('games/{slug}', [GamesController::class, 'show'])->name('games.show');
     Route::redirect('/', '/games');
