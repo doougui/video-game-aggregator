@@ -2,22 +2,22 @@
     <div class="app-container">
         <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
             <div class="flex-none">
-                <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] ?? 'No specified name' }}">
+                <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] ?? __('No specified name') }}">
             </div>
             <div class="lg:ml-12 lg:mr-64">
-                <h2 class="font-semibold text-4xl leading-tight mt-1">{{ $game['name'] ?? 'No specified name' }}</h2>
+                <h2 class="font-semibold text-4xl leading-tight mt-1">{{ $game['name'] ?? __('No specified name') }}</h2>
 
                 <div class="text-gray-400">
                     <span>
-                        {{ $game['genres'] ?? 'No specified genres' }}
+                        {{ $game['genres'] ?? __('No specified genres') }}
                     </span>
                     &middot;
                     <span>
-                        {{ $game['involvedCompanies'] ?? 'No involved companies specified' }}
+                        {{ $game['involvedCompanies'] ?? __('No involved companies specified') }}
                     </span>
                     &middot;
                     <span>
-                        {{ $game['platforms'] ?? 'No specified platforms' }}
+                        {{ $game['platforms'] ?? __('No specified platforms') }}
                     </span>
                 </div>
 
@@ -63,7 +63,7 @@
                 </div>
 
                 <p class="mt-12">
-                    {{ $game['summary'] ?? 'Summary not available' }}
+                    {{ $game['summary'] ?? __('Summary not available') }}
                 </p>
 
                 <div class="mt-5" x-data="{ isTrailerModalVisible: false }">
@@ -73,7 +73,7 @@
                         @if(! $game['trailer']) disabled @endif
                     >
                         <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path></svg>
-                        <span class="ml-2">@if($game['trailer']) Play Trailer @else Trailer Not Found @endif</span>
+                        <span class="ml-2">@if($game['trailer']) {{ __('Play Trailer') }} @else {{ __('Trailer Not Found') }} @endif</span>
                     </button>
 
                     <template x-if="isTrailerModalVisible">
@@ -121,7 +121,9 @@
             class="images-contaner border-b border-gray-800 pb-12 mt-8"
             x-data="{ isImageModalVisible: false, image: '' }"
         >
-            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Images</h2>
+            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
+                {{ __('Images') }}
+            </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
                 @forelse($game['screenshots'] as $screenshot)
@@ -133,11 +135,11 @@
                             "
                             href="#"
                         >
-                            <img src="{{ $screenshot['big'] }}" alt="{{ $game['name'] ?? 'No specified name' }}" class="hover:opacity-75 transition ease-in-out duration-150">
+                            <img src="{{ $screenshot['big'] }}" alt="{{ $game['name'] ?? __('No specified name') }}" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                     </div>
                 @empty
-                    <p class="text-sm text-gray-500">No screenshots found</p>
+                    <p class="text-sm text-gray-500">{{ __('No images found') }}</p>
                 @endforelse
             </div>
 
@@ -163,7 +165,7 @@
                                 </button>
                             </div>
                             <div class="modal-body p-8">
-                                <img :src="image" alt="{{ $game['name'] ?? 'No specified name' }}">
+                                <img :src="image" alt="{{ $game['name'] ?? __('No specified name') }}">
                             </div>
                         </div>
                     </div>
