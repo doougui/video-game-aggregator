@@ -4,8 +4,8 @@
             @csrf
 
             <div class="mb-6">
-                <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Reset Your Password') }}</h1>
-                <p class="text-gray-400">Confirm your email and type your new desired password.</p>
+                <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Reset Password') }}</h1>
+                <p class="text-gray-400">{{ __('Confirm your email and type your new desired password.') }}</p>
             </div>
 
             @if(session('status'))
@@ -15,7 +15,7 @@
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
             <div class="mt-3">
-                <label for="email" class="label">{{ __('Email Confirmation') }}</label>
+                <label for="email" class="label">{{ __('Confirm Email') }}</label>
                 <input id="email"
                        class="input @error('email') border-red-500 @enderror"
                        type="email"
@@ -48,7 +48,7 @@
             </div>
 
             <div class="mt-3">
-                <label for="password" class="label">{{ __('Password Confirmation') }}</label>
+                <label for="password" class="label">{{ __('Confirm Password') }}</label>
                 <input id="password_confirmation"
                        class="input @error('password_confirmation') border-red-500 @enderror"
                        type="password"
@@ -64,7 +64,7 @@
 
             <div class="mt-4">
                 <button type="submit" class="button button--primary w-full justify-center">
-                    Change Password
+                    {{ __('Reset Password') }}
                 </button>
             </div>
         </form>
