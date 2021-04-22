@@ -5,7 +5,7 @@
 
     <div class="ml-12">
         <div class="inline-block text-lg font-semibold leading-tight text-transparent bg-gray-700 rounded mt-4">
-            This is the game title
+            {{ __('This is the game title') }}
         </div>
         <div class="mt-8 space-y-2 hidden lg:block">
             <span class="text-transparent bg-gray-700 rounded inline-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum.</span>

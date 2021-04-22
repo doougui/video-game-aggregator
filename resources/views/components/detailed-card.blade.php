@@ -1,7 +1,7 @@
 <div class="game bg-gray-800 rounded-lg shadow-md flex px-6 py-6">
     <div class="relative flex-none">
         <a href="{{ $game['slug'] ? route('games.show', $game['slug']) : '#' }}">
-            <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] ?? 'No specified name' }}" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
+            <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] ?? __('No specified name') }}" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
         </a>
 
         @isset($game['rating'])
@@ -13,13 +13,13 @@
         <a href="{{ $game['slug'] ? route('games.show', $game['slug']) : '#' }}"
            class="block text-lg font-semibold leading-tight hover:text-gray-400 mt-4"
         >
-            {{ $game['name'] ?? 'No specified name' }}
+            {{ $game['name'] ?? __('No specified name') }}
         </a>
         <div class="text-gray-400 mt-1">
-            {{ $game['platforms'] ?? 'No specified platforms' }}
+            {{ $game['platforms'] ?? __('No specified name') }}
         </div>
         <p class="mt-6 text-gray-400 hidden lg:block">
-            {{ $game['summary'] ?? 'Summary not available' }}
+            {{ $game['summary'] ?? __('Summary not available') }}
         </p>
     </div>
 </div>
