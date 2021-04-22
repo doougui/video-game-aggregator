@@ -1,5 +1,5 @@
 <div wire:init="fetch">
-    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Most Anticipated</h2>
+    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">{{ __('Most Anticipated') }}</h2>
 
     <div class="most-anticipated-container space-y-10 mt-8">
         @forelse($games as $game)
