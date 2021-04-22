@@ -5,7 +5,7 @@
 
             <div class="mb-6">
                 <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Forgot My Password') }}</h1>
-                <p class="text-gray-400">Enter your email and follow the instructions to recover your account.</p>
+                <p class="text-gray-400">{{ __('Enter your email and follow the instructions to recover your account.') }}</p>
             </div>
 
             <div class="mt-3">
@@ -31,12 +31,12 @@
 
             <div class="mt-4">
                 <button type="submit" class="button button--primary w-full justify-center">
-                    Recover
+                    {{ __('Recover') }}
                 </button>
             </div>
 
             <div class="mt-3 text-center">
-                <a href="{{ route('login') }}" class="link text-blue-500">Log in</a>
+                <a href="{{ route('login') }}" class="link text-blue-500">{{ __('Log in') }}</a>
             </div>
         </form>
     </div>
