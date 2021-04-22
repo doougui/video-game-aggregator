@@ -15,9 +15,9 @@
 
     <footer class="border-t border-gray-800">
         <div class="container mx-auto px-4 py-6">
-            Made with 💖 by <a href="https://github.com/doougui" target="_blank" class="link" rel="noopener">Doougui</a>
+            {{ __('Made with 💖 by') }} <a href="https://github.com/doougui" target="_blank" class="link" rel="noopener">Doougui</a>
             &middot;
-            Powered By: <a href="https://www.igdb.com/api" target="_blank" rel="noopener" class="link">IGDB API</a>
+            {{ __('Powered By') }}: <a href="https://www.igdb.com/api" target="_blank" rel="noopener" class="link">IGDB API</a>
         </div>
     </footer>
 
