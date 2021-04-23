@@ -14,14 +14,14 @@
 
             <div class="flex items-center mt-6 lg:mt-0">
                 <livewire:search-dropdown />
-                <div class="ml-6">
+                <div class="ml-6 flex items-center">
                     @auth
                         <div class="flex items-center relative" x-data="{ isOpen: false }" @click.away="isOpen = false">
-                            <a href="#" class="mr-3" @click.prevent="isOpen = ! isOpen" aria-haspopup="true" :aria-expanded="isOpen">
+                            <a href="#" @click.prevent="isOpen = ! isOpen" aria-haspopup="true" :aria-expanded="isOpen">
                                 <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}'s avatar" class="rounded-full w-8">
                             </a>
 
-                            <div class="absolute right-0 top-7 mr-3 z-50 bg-gray-800 text-xs rounded whitespace-nowrap w-32 mt-2" x-show.transition.opacity.duration.200="isOpen">
+                            <div class="absolute right-0 top-7 z-50 bg-gray-800 text-xs rounded whitespace-nowrap w-32 mt-2" x-show.transition.opacity.duration.200="isOpen">
                                 <ul>
                                     <li class="list-item">
                                         <a href="{{ route('profiles.edit') }}" class="list-link w-full">
@@ -51,6 +51,23 @@
                             <a href="{{ route('register') }}" class="ml-4 link">{{ __('Sign up') }}</a>
                         @endif
                     @endauth
+
+                    <div class="flex items-center relative ml-4 mr-3" x-data="{ isOpen: false }" @click.away="isOpen = false">
+                        <a href="#" class="flex items-center" @click.prevent="isOpen = ! isOpen" aria-haspopup="true" :aria-expanded="isOpen">
+                            <img src="{{ asset('/img/brazil.svg') }}" alt="Brazil" class="w-8 mr-2">
+                            <span class="w-1">&#9662;</span>
+                        </a>
+
+                        <div class="absolute right-0 top-7 z-50 bg-gray-800 text-xs rounded w-max mt-2" x-show.transition.opacity.duration.200="isOpen">
+                            <ul>
+                                <li class="list-item">
+                                    <a href="#" class="list-link w-full">
+                                        <img src="{{ asset('/img/united-states.svg') }}" alt="United States" class="w-8">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
