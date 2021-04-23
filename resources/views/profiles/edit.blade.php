@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <label for="password" class="label">{{ __('Password Confirmation') }}</label>
+                    <label for="password" class="label">{{ __('Confirm Password') }}</label>
                     <input id="password_confirmation"
                            class="input @error('password_confirmation') border-red-500 @enderror"
                            type="password"
