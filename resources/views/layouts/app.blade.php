@@ -54,17 +54,25 @@
 
                     <div class="flex items-center relative ml-4 mr-3" x-data="{ isOpen: false }" @click.away="isOpen = false">
                         <a href="#" class="flex items-center" @click.prevent="isOpen = ! isOpen" aria-haspopup="true" :aria-expanded="isOpen">
-                            <img src="{{ asset('/img/brazil.svg') }}" alt="Brazil" class="w-8 mr-2">
+                            <img
+                                src="{{ asset('/img/' . \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales()[\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale()]['flag']) }}"
+                                alt="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales()[\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale()]['native'] }}"
+                                class="w-8 mr-2"
+                            >
                             <span class="w-1">&#9662;</span>
                         </a>
 
                         <div class="absolute right-0 top-7 z-50 bg-gray-800 text-xs rounded w-max mt-2" x-show.transition.opacity.duration.200="isOpen">
                             <ul>
-                                <li class="list-item">
-                                    <a href="#" class="list-link w-full">
-                                        <img src="{{ asset('/img/united-states.svg') }}" alt="United States" class="w-8">
-                                    </a>
-                                </li>
+                                @foreach(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales() as $key => $locale)
+                                    @if($key !== \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale())
+                                        <li class="list-item">
+                                            <a href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($key) }}" class="list-link w-full">
+                                                <img src="{{ asset('/img/' . $locale['flag']) }}" alt="{{ $locale['native'] }}" class="w-8">
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
