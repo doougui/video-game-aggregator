@@ -18,6 +18,14 @@
             {{ __('Made with 💖 by') }} <a href="https://github.com/doougui" target="_blank" class="link" rel="noopener">Doougui</a>
             &middot;
             {{ __('Powered By') }}: <a href="https://www.igdb.com/api" target="_blank" rel="noopener" class="link">IGDB API</a>
+            &middot;
+            {!! __('Icons made by <a href=":creator_link" class="link" title=":creator_name">:creator_name</a> from <a class="link" href=":from_link" title=":from_name">:from_short_link</a>', [
+                'creator_link' => 'https://www.freepik.com',
+                'creator_name' => 'Freepik',
+                'from_link' => 'https://www.flaticon.com/',
+                'from_name' => 'Flaticon',
+                'from_short_link' => 'www.flaticon.com'
+            ]) !!}
         </div>
     </footer>
 

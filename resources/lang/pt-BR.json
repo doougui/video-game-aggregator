@@ -107,5 +107,6 @@
     "Profile information successfully updated": "Informações de perfil atualizadas com sucesso",
     "Preview image may not be completely accurate": "Imagem de pré-visualização pode não ser completamente fiel à imagem final",
     "I'm a gamer": "Eu sou um jogador",
-    "* Since you are logged in with :provider, you cannot change your password.": "* Como você está autenticado com a sua conta :provider, você não pode trocar a senha da sua conta."
+    "* Since you are logged in with :provider, you cannot change your password.": "* Como você está autenticado com a sua conta :provider, você não pode trocar a senha da sua conta.",
+    "Icons made by <a href=\":creator_link\" class=\"link\" title=\":creator_name\">:creator_name</a> from <a class=\"link\" href=\":from_link\" title=\":from_name\">:from_short_link</a>": "Icones feitos por <a href=\":creator_link\" class=\"link\" title=\":creator_name\">:creator_name</a> de <a class=\"link\" href=\":from_link\" title=\":from_name\">:from_short_link</a>"
 }

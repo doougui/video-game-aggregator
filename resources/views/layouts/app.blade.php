@@ -21,7 +21,7 @@
                                 <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}'s avatar" class="rounded-full w-8">
                             </a>
 
-                            <div class="absolute right-0 top-7 z-50 bg-gray-800 text-xs rounded whitespace-nowrap w-32 mt-2" x-show.transition.opacity.duration.200="isOpen">
+                            <div class="absolute right-0 top-7 z-50 bg-gray-800 text-xs rounded w-32 mt-2" x-show.transition.opacity.duration.200="isOpen">
                                 <ul>
                                     <li class="list-item">
                                         <a href="{{ route('profiles.edit') }}" class="list-link w-full">
