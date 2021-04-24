@@ -1,4 +1,4 @@
-<div wire:init="fetch">
+<div wire:init="fetch" id="coming-soon">
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold mt-12">{{ __('Coming Soon') }}</h2>
 
     <div class="coming-soon-container space-y-10 mt-8">

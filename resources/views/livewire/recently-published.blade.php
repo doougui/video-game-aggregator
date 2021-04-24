@@ -1,4 +1,4 @@
-<div wire:init="fetch" class="recent-reviews w-full lg:w-3/4 mr-0 lg:mr-32">
+<div wire:init="fetch" class="recent-reviews w-full lg:w-3/4 mr-0 lg:mr-32" id="recently-published">
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">{{ __('Recently Published') }}</h2>
 
     <div class="recently-reviewed-container space-y-12 mt-8">

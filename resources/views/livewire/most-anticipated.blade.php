@@ -1,4 +1,4 @@
-<div wire:init="fetch">
+<div wire:init="fetch" id="most-anticipated">
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">{{ __('Most Anticipated') }}</h2>
 
     <div class="most-anticipated-container space-y-10 mt-8">

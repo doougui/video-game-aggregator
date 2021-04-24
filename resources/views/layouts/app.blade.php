@@ -7,8 +7,9 @@
                 </a>
                 <ul class="flex ml-0 lg:ml-16 space-x-8 mt-6 lg:mt-0">
                     <li><a href="{{ route('games.index') }}" class="hover:text-gray-400">{{ __('Games') }}</a></li>
-                    <li><a href="#" class="hover:text-gray-400">{{ __('Reviews') }}</a></li>
-                    <li><a href="#" class="hover:text-gray-400">{{ __('Coming Soon') }}</a></li>
+                    <li><a href="{{ route('games.index') . '#recently-published' }}" class="hover:text-gray-400">{{ __('Recently Published') }}</a></li>
+                    <li><a href="{{ route('games.index') . '#most-anticipated' }}" class="hover:text-gray-400">{{ __('Most Anticipated') }}</a></li>
+                    <li><a href="{{ route('games.index') . '#coming-soon' }}" class="hover:text-gray-400">{{ __('Coming Soon') }}</a></li>
                 </ul>
             </div>
 
