@@ -28,13 +28,11 @@ class AuthenticationTest extends TestCase
     /** @test */
     public function users_can_authenticate_using_the_login_screen()
     {
-        $this->withoutExceptionHandling();
-        $this->refreshApplicationWithLocale('en-US');
         $user = User::factory()->create();
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $this->assertAuthenticated();
@@ -46,11 +44,12 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->post(route('login'), [
+        $request = $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
 
         $this->assertGuest();
+        $request->assertSessionHasErrors(['email' => __('auth.failed')]);
     }
 }
