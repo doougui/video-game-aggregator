@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -14,7 +14,8 @@ class AuthenticationTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->refreshApplicationWithLocale('en-US');
+        parent::setUp();
+        $this->refreshApplicationWithLocale(App::currentLocale());
     }
 
     /** @test */
