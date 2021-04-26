@@ -72,12 +72,12 @@ class ProfilesController extends Controller
             'name' => 'required|string|max:255',
             'bio' => 'nullable|string|max:1024',
             'avatar' => 'file|mimes:jpg,png,jpeg|max:1000',
-            'email' => 'string|required|email|max:255|unique:users,email,' . auth()->user()->id,
         ]);
 
         if (! auth()->user()->provider) {
             $validated = array_merge($validated, request()->validate([
-               'password' => 'nullable|between:8,25|confirmed'
+                'email' => 'string|required|email|max:255|unique:users,email,' . auth()->user()->id,
+                'password' => 'nullable|between:8,25|confirmed'
             ]));
         }
 

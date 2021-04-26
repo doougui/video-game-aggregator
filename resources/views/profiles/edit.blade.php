@@ -61,22 +61,24 @@
                 </div>
             </div>
 
-            <div class="mt-3">
-                <label for="email" class="label">{{ __('Email') }}</label>
-                <input id="email"
-                       class="input @error('email') border-red-500 @enderror"
-                       type="email"
-                       name="email"
-                       placeholder="email@email.com"
-                       value="{{ $user['email'] }}"
-                       autocomplete="email"
-                       required
-                >
+            @if(! $user->provider)
+                <div class="mt-3">
+                    <label for="email" class="label">{{ __('Email') }}</label>
+                    <input id="email"
+                           class="input @error('email') border-red-500 @enderror"
+                           type="email"
+                           name="email"
+                           placeholder="email@email.com"
+                           value="{{ $user['email'] }}"
+                           autocomplete="email"
+                           required
+                    >
 
-                @error('email')
-                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
-                @enderror
-            </div>
+                    @error('email')
+                        <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                    @enderror
+                </div>
+            @endif
 
             <div class="mt-3">
                 <label for="bio" class="label">{{ __('Bio') }}</label>
@@ -124,7 +126,7 @@
                     @enderror
                 </div>
             @else
-                <p class="mt-2 text-red-500 text-sm">{{ __('* Since you are logged in with :provider, you cannot change your password.', ['provider' => ucfirst($user->provider)]) }}</p>
+                <p class="mt-2 text-red-500 text-sm">{{ __('* Since you are logged in with :provider, you cannot change your email or password.', ['provider' => ucfirst($user->provider)]) }}</p>
             @endif
 
             <div class="flex flex-col lg:flex-row">
