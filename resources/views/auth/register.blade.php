@@ -52,6 +52,7 @@
                        placeholder="John Doe"
                        value="{{ old('name') }}"
                        autocomplete="name"
+                       autofocus
                        required
                 >
 

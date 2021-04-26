@@ -17,6 +17,7 @@
                        placeholder="email@email.com"
                        value="{{ old('email') }}"
                        autocomplete="email"
+                       autofocus
                        required
                 >
 

@@ -31,8 +31,10 @@ Route::group([
             ->name('nickname');
 
         Route::get('/profile', [ProfilesController::class, 'edit'])
+            ->middleware('password.confirm')
             ->name('profiles.edit');
 
-        Route::put('/profile', [ProfilesController::class, 'update']);
+        Route::put('/profile', [ProfilesController::class, 'update'])
+            ->middleware('password.confirm');
     });
 });

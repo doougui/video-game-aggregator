@@ -1,36 +1,38 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-        </div>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.confirm') }}">
+<x-app-layout>
+    <div class="form-container">
+        <form action="{{ route('password.confirm') }}" method="POST">
             @csrf
 
-            <!-- Password -->
-            <div>
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+            <div class="mb-6">
+                <h1 class="text-blue-400 uppercase tracking-wide font-semibold text-xl">{{ __('Confirm Password') }}</h1>
+                <p class="text-gray-400">{{ __('This is a secure area of the application. Please confirm your password before continuing.') }}</p>
             </div>
 
-            <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
+            <div class="mt-3">
+                <label for="password" class="label">{{ __('Password') }}</label>
+                <input id="password"
+                       class="input @error('password') border-red-500 @enderror"
+                       type="password"
+                       name="password"
+                       placeholder="********"
+                       autofocus
+                       required
+                >
+
+                @error('password')
+                    <p class="mt-2 text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="button button--primary w-full justify-center">
+                    {{ __('Confirm Password') }}
+                </button>
+            </div>
+
+            <div class="mt-3 text-center">
+                <a href="{{ route('password.request') }}" class="link text-blue-500">{{ __('Forgot your password?') }}</a>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</x-app-layout>
