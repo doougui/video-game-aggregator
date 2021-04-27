@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
@@ -14,14 +15,21 @@ class EmailVerificationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_email_verification_screen_can_be_rendered()
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->refreshApplicationWithLocale(App::currentLocale());
+    }
+
+    public function test_email_verification_alert_can_be_rendered()
     {
         $user = User::factory()->create([
             'email_verified_at' => null,
         ]);
 
-        $response = $this->actingAs($user)->get('/verify-email');
+        $response = $this->actingAs($user)->get(route('games.index'));
 
+        $response->assertSee(__('Please verify your email address by clicking on the link we emailed to you. If you didn\'t receive the email, we will gladly send you another.'));
         $response->assertStatus(200);
     }
 

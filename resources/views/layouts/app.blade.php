@@ -82,6 +82,30 @@
         </nav>
     </header>
 
+    @if(auth()->check() && ! auth()->user()->hasVerifiedEmail())
+        <div class="border-b border-gray-800 bg-gray-800" x-data="{ show: true }" x-show="show" x-show.transition.opacity.duration.200="show">
+            <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-6">
+                <div class="w-full flex justify-between items-center">
+                    <div>
+                        @if (session('status') == 'verification-link-sent')
+                            <span @load.window="setTimeout(() => show = false, 10000)" class="text-sm text-green-500">{{ __('A new verification link has been sent to the email address you provided during registration.') }}</span>
+                        @else
+                            <span class="text-sm text-red-500">{{ __('Please verify your email address by clicking on the link we emailed to you. If you didn\'t receive the email, we will gladly send you another.') }}</span>
+                        @endif
+                    </div>
+
+                    @if (! session('status') == 'verification-link-sent')
+                        <form action="{{ route('verification.send') }}" method="POST">
+                            @csrf
+
+                            <button type="submit" class="button button--primary">{{ __('Resend Verification Email') }}</button>
+                        </form>
+                    @endif
+                </div>
+            </div>
+        </div>
+    @endif
+
     <main class="py-8">
         {{ $slot }}
     </main>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -82,6 +83,7 @@ class AuthenticatedSessionController extends Controller
                 'nickname' => $socialiteUser->getNickname(),
                 'name' => $socialiteUser->getName(),
                 'avatar' => $socialiteUser->getAvatar(),
+                'email_verified_at' => Carbon::now()->toDateTimeString(),
                 'provider' => $provider,
                 'provider_id' => $socialiteUser->getId(),
             ]
