@@ -93,7 +93,7 @@ class AuthenticatedSessionController extends Controller
 
         request()->session()->regenerate();
 
-        return redirect(route('games.index'));
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
