@@ -44,4 +44,23 @@ class ChooseNicknameTest extends TestCase
 
         $this->assertEquals('new-nickname', auth()->user()->nickname);
     }
+
+    /** @test */
+    public function users_cannot_choose_a_taken_nickname()
+    {
+        $john = User::factory()->create([
+            'nickname' => 'john'
+        ]);
+
+        $sally = User::factory()->create([
+            'nickname' => 'sally'
+        ]);
+
+        $this->actingAs($john);
+
+        Livewire::test(ChooseNickname::class)
+            ->set('nickname', $sally->nickname)
+            ->call('updateNickname')
+            ->assertHasErrors('nickname');
+    }
 }
