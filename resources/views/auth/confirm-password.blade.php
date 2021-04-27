@@ -29,10 +29,6 @@
                     {{ __('Confirm Password') }}
                 </button>
             </div>
-
-            <div class="mt-3 text-center">
-                <a href="{{ route('password.request') }}" class="link text-blue-500">{{ __('Forgot your password?') }}</a>
-            </div>
         </form>
     </div>
 </x-app-layout>

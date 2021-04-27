@@ -137,7 +137,7 @@
                 </div>
 
                 <div class="mt-4 lg:w-1/4 lg:ml-3">
-                    <a href="{{ cancel() }}" class="button button--cancel w-full justify-center">
+                    <a href="{{ route('games.index') }}" class="button button--cancel w-full justify-center">
                         {{ __('Cancel') }}
                     </a>
                 </div>
