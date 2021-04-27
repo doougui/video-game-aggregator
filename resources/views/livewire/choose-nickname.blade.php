@@ -26,13 +26,13 @@
     </div>
 
     <div class="flex flex-col lg:flex-row">
-        <div class="mt-4 w-full @if(url()->previous() !== route('register')) lg:w-3/4 @endif">
+        <div class="mt-4 w-full @if(! $isSigningUp) lg:w-3/4 @endif">
             <button type="submit" class="button button--primary w-full justify-center">
                 {{ __('Choose Nickname') }}
             </button>
         </div>
 
-        @if(url()->previous() !== route('register'))
+        @if(! $isSigningUp)
             <div class="mt-4 lg:w-1/4 lg:ml-3">
                 <a href="{{ route('profiles.edit') }}" class="button button--cancel w-full justify-center">
                     {{ __('Keep current') }}

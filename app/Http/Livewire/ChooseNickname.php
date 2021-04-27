@@ -7,6 +7,7 @@ use Livewire\Component;
 class ChooseNickname extends Component
 {
     public $nickname;
+    public $isSigningUp;
 
     protected function rules()
     {
