@@ -12,8 +12,9 @@ class ChooseNickname extends Component
     public function mount()
     {
         $this->nickname = auth()->user()->nickname;
+        $this->isSigningUp = false;
 
-        if (session()->get('isSigningUp')) {
+        if (session()->pull('isSigningUp')) {
             $this->isSigningUp = true;
         }
     }
