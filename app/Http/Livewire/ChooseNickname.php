@@ -37,8 +37,6 @@ class ChooseNickname extends Component
 
         auth()->user()->update($validatedData);
 
-        session()->forget('isSigningUp');
-
         return redirect()->to(route('games.index'));
     }
 
