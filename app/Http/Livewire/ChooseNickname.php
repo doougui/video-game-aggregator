@@ -9,6 +9,11 @@ class ChooseNickname extends Component
     public $nickname;
     public $isSigningUp;
 
+    public function mount()
+    {
+        $this->nickname = auth()->user()->nickname;
+    }
+
     protected function rules()
     {
         return [
