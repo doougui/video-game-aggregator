@@ -44,6 +44,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        session(['isSigningUp' => true]);
+
         return redirect(route('nickname'));
     }
 }

@@ -12,6 +12,10 @@ class ChooseNickname extends Component
     public function mount()
     {
         $this->nickname = auth()->user()->nickname;
+
+        if (session()->get('isSigningUp')) {
+            $this->isSigningUp = true;
+        }
     }
 
     protected function rules()
@@ -31,6 +35,8 @@ class ChooseNickname extends Component
         $validatedData = $this->validate();
 
         auth()->user()->update($validatedData);
+
+        session()->forget('isSigningUp');
 
         return redirect()->to(route('games.index'));
     }
