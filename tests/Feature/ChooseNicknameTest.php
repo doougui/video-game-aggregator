@@ -20,6 +20,17 @@ class ChooseNicknameTest extends TestCase
     }
 
     /** @test */
+    public function choose_nickname_page_contains_livewire_component()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $this->get(route('nickname'))
+            ->assertSeeLivewire('choose-nickname');
+    }
+
+    /** @test */
     public function choose_nickname_screen_can_be_rendered()
     {
         $user = User::factory()->create();
@@ -40,7 +51,8 @@ class ChooseNicknameTest extends TestCase
 
         Livewire::test(ChooseNickname::class)
             ->set('nickname', 'new-nickname')
-            ->call('updateNickname');
+            ->call('updateNickname')
+            ->assertHasNoErrors('nickname');
 
         $this->assertEquals('new-nickname', auth()->user()->nickname);
     }
