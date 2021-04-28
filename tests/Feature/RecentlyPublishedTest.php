@@ -11,7 +11,7 @@ use App\Http\Livewire\RecentlyPublished;
 class RecentlyPublishedTest extends TestCase
 {
     /** @test */
-    public function the_main_page_shows_recently_reviewed_games()
+    public function the_main_page_shows_recently_published_games()
     {
         Http::fake([
             'https://api.igdb.com/v4/games' => $this->fakeRecentlyPublishedGames(),
