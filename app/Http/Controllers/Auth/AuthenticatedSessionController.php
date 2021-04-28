@@ -59,11 +59,11 @@ class AuthenticatedSessionController extends Controller
 
         /**
          * The final query will be:
-         * select * from "users" where "email" = ? and (("provider" is null or "provider" <> ?) or ("provider_id" is null or "provider_id" <> ?))
+         * select * from `users` where `email` = ? and ((`provider` is null or `provider` <> ?) or (`provider_id` is null or `provider_id` <> ?))
          */
         $registeredUser = User::whereEmail($socialiteUser->getEmail())
                             ->whereRaw(
-                                '(("provider" is null or "provider" <> ?) or ("provider_id" is null or "provider_id" <> ?))',
+                                '((`provider` is null or `provider` <> ?) or (`provider_id` is null or `provider_id` <> ?))',
                                 [$provider, $socialiteUser->getId()]
                             )->first();
 

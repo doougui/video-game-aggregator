@@ -76,20 +76,64 @@ class SocialiteTest extends TestCase
         }
     }
 
-    /** @test */
-    public function users_cannot_login_with_a_already_registered_account_using_socialite()
+    public function userProvider()
     {
-        $this->withoutExceptionHandling();
+        return [
+            [
+                'empty provider and provider_id' => [
+                    'email' => 'test@test.com',
+                    'provider' => null,
+                    'provider_id' => null,
+                ],
+            ],
+            [
+                'wrong provider and provider_id' => [
+                    'email' => 'test@test.com',
+                    'provider' => 'slack',
+                    'provider_id' => '9876543210',
+                ],
+            ],
+            [
+                'empty provider but right provider_id' => [
+                    'email' => 'test@test.com',
+                    'provider' => null,
+                    'provider_id' => '1234567890',
+                ],
+            ],
+            [
+                'right provider but empty provider_id' => [
+                    'email' => 'test@test.com',
+                    'provider' => 'discord',
+                    'provider_id' => null,
+                ]
+            ],
+            [
+                'wrong provider but right provider_id' => [
+                    'email' => 'test@test.com',
+                    'provider' => 'slack',
+                    'provider_id' => '1234567890',
+                ],
+            ],
+            [
+                'right provider but wrong provider_id' => [
+                    'email' => 'test@test.com',
+                    'provider' => 'discord',
+                    'provider_id' => '9876543210',
+                ]
+            ],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider userProvider
+     * @param $userInfos
+     */
+    public function users_cannot_login_with_a_already_registered_account_using_socialite($userInfos)
+    {
         $provider = $this->mock_socialite();
 
-        /**
-         * TODO: add data provider to test against same and different social providers, provider_id, different values, etc.
-         */
-        $user = User::factory()->create([
-            'email' => 'test@test.com',
-            'provider' => null,
-            'provider_id' => null,
-        ]);
+        $user = User::factory()->create($userInfos);
 
         foreach (['discord', 'twitch'] as $social) {
             Socialite::shouldReceive('driver')->with($social)->andReturn($provider);
@@ -102,7 +146,7 @@ class SocialiteTest extends TestCase
             $this->assertDatabaseMissing('users', [
                 'email' => $user->email,
                 'provider' => $social,
-                'provider_id' => 1234567890
+                'provider_id' => '1234567890'
             ]);
         }
     }
