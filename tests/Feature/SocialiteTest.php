@@ -60,7 +60,7 @@ class SocialiteTest extends TestCase
     public function users_can_login_with_socialite()
     {
         $this->withoutExceptionHandling();
-        $provider = $this->mock_socialite();
+        $provider = $this->fakeSocialite();
 
         foreach (['discord', 'twitch'] as $social) {
             Socialite::shouldReceive('driver')->with($social)->andReturn($provider);
@@ -131,7 +131,7 @@ class SocialiteTest extends TestCase
      */
     public function users_cannot_login_with_a_already_registered_account_using_socialite($userInfos)
     {
-        $provider = $this->mock_socialite();
+        $provider = $this->fakeSocialite();
 
         $user = User::factory()->create($userInfos);
 
@@ -151,7 +151,7 @@ class SocialiteTest extends TestCase
         }
     }
 
-    private function mock_socialite()
+    private function fakeSocialite()
     {
         $abstractUser = Mockery::mock('Laravel\Socialite\Two\User');
 
