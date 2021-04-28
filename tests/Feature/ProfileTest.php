@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -48,7 +49,6 @@ class ProfileTest extends TestCase
     /** @test */
     public function users_can_change_their_profile_information()
     {
-        $this->withoutExceptionHandling();
         $user = User::factory()->create([
             'name' => 'Test User',
             'bio' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
@@ -70,5 +70,34 @@ class ProfileTest extends TestCase
         $this->put(route('profiles.edit'), $newInfo)->assertSessionHasNoErrors();
 
         $this->assertDatabaseHas('users', $newInfo);
+    }
+
+    /** @test */
+    public function users_authenticated_with_social_login_cannot_change_email_or_password()
+    {
+        $user = User::factory()->create([
+            'email' => 'test@test.com',
+            'password' => null,
+            'provider' => 'discord',
+            'provider_id' => '1234567890',
+        ]);
+
+        $this->actingAs($user);
+
+        $newInfo = [
+            'email' => 'new@test.com',
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
+        ];
+
+        $this->put(route('profiles.edit'), $newInfo);
+
+        $this->assertDatabaseMissing('users', [
+            'email' => 'new@test.com',
+        ]);
+
+        $this->assertDatabaseMissing('users', [
+            'password' => Hash::make('new-password'),
+        ]);
     }
 }
