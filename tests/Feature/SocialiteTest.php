@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\RedirectResponse;
@@ -58,6 +59,7 @@ class SocialiteTest extends TestCase
     /** @test */
     public function users_can_login_with_socialite()
     {
+        $this->withoutExceptionHandling();
         $provider = $this->mock_socialite();
 
         foreach (['discord', 'twitch'] as $social) {
@@ -74,33 +76,36 @@ class SocialiteTest extends TestCase
         }
     }
 
-//    /** @test */
-//    public function users_cannot_login_with_a_already_registered_account_using_socialite()
-//    {
-//        $this->withoutExceptionHandling();
-//        $provider = $this->mock_socialite();
-//
-//        $user = User::factory()->create([
-//            'email' => 'test@test.com',
-//            'provider' => null,
-//            'provider_id' => null,
-//        ]);
-//
-//        foreach (['discord', 'twitch'] as $social) {
-//            Socialite::shouldReceive('driver')->with($social)->andReturn($provider);
-//
-//            $this->get(route("auth.social.callback", ['provider' => $social]))
-//                ->assertRedirect(route('login'))
-//                ->assertSessionHasErrors('email', __('auth.wrong_method'));
-//
-//            $this->assertGuest();
-//            $this->assertDatabaseMissing('users', [
-//                'email' => auth()->user()->email,
-//                'provider' => $social,
-//                'provider_id' => 1234567890
-//            ]);
-//        }
-//    }
+    /** @test */
+    public function users_cannot_login_with_a_already_registered_account_using_socialite()
+    {
+        $this->withoutExceptionHandling();
+        $provider = $this->mock_socialite();
+
+        /**
+         * TODO: add data provider to test against same and different social providers, provider_id, different values, etc.
+         */
+        $user = User::factory()->create([
+            'email' => 'test@test.com',
+            'provider' => null,
+            'provider_id' => null,
+        ]);
+
+        foreach (['discord', 'twitch'] as $social) {
+            Socialite::shouldReceive('driver')->with($social)->andReturn($provider);
+
+            $this->get(route("auth.social.callback", ['provider' => $social]))
+                ->assertRedirect(route('login'))
+                ->assertSessionHasErrors('email', __('auth.wrong_method'));
+
+            $this->assertGuest();
+            $this->assertDatabaseMissing('users', [
+                'email' => $user->email,
+                'provider' => $social,
+                'provider_id' => 1234567890
+            ]);
+        }
+    }
 
     private function mock_socialite()
     {

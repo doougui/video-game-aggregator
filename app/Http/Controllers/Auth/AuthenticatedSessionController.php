@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -57,16 +58,14 @@ class AuthenticatedSessionController extends Controller
         $socialiteUser = Socialite::driver($provider)->user();
 
         /**
-         * The callback function inside the where clause wraps the
-         * condition inside parenthesis. The final query will be:
-         * select * from `users` where `email` = ? and (`provider` != '? or `provider_id` != ?);
+         * The final query will be:
+         * select * from "users" where "email" = ? and (("provider" is null or "provider" <> ?) or ("provider_id" is null or "provider_id" <> ?))
          */
-        $registeredUser = User::where('email', $socialiteUser->getEmail())
-                            ->where(function ($query) use ($provider, $socialiteUser) {
-                                $query
-                                    ->where('provider', '!=', $provider)
-                                    ->orWhere('provider_id', '!=', $socialiteUser->getId());
-                            })->first();
+        $registeredUser = User::whereEmail($socialiteUser->getEmail())
+                            ->whereRaw(
+                                '(("provider" is null or "provider" <> ?) or ("provider_id" is null or "provider_id" <> ?))',
+                                [$provider, $socialiteUser->getId()]
+                            )->first();
 
         if ($registeredUser) {
             return redirect()->intended(route('login'))
