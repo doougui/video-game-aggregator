@@ -69,7 +69,7 @@ class AuthenticatedSessionController extends Controller
                             })->first();
 
         if ($registeredUser) {
-            return redirect(route('login'))
+            return redirect()->intended(route('login'))
                 ->withErrors(['email' => __('auth.wrong_method')]);
         }
 

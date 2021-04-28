@@ -45,7 +45,7 @@ class EmailVerificationTest extends TestCase
         Notification::assertNothingSent();
 
         $this->post(route('register'), [
-            'name' => 'Test User',
+            'name' => 'SocialiteTest User',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
