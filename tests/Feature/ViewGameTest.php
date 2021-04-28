@@ -2,12 +2,21 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ViewGameTest extends TestCase
 {
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->refreshApplicationWithLocale(App::currentLocale());
+    }
+
     /** @test */
     public function the_game_page_shows_correct_game_info()
     {

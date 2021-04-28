@@ -67,4 +67,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return asset($value ? "storage/avatars/{$value}" : '/img/avatar.jpg');
     }
+
+    public function isAuthenticatedWithSocialLogin()
+    {
+        return $this->provider && $this->provider_id;
+    }
 }

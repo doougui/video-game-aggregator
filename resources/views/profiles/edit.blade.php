@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            @if(! $user->provider)
+            @if(! $user->isAuthenticatedWithSocialLogin())
                 <div class="mt-3">
                     <label for="email" class="label">{{ __('Email') }}</label>
                     <input id="email"
@@ -96,7 +96,7 @@
                 @enderror
             </div>
 
-            @if(! $user->provider)
+            @if(! $user->isAuthenticatedWithSocialLogin())
                 <div class="mt-3">
                     <label for="password" class="label">{{ __('Password') }}</label>
                     <input id="password"

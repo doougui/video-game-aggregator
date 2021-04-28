@@ -74,7 +74,7 @@ class ProfilesController extends Controller
             'avatar' => 'file|mimes:jpg,png,jpeg|max:1000',
         ]);
 
-        if (! auth()->user()->provider) {
+        if (! auth()->user()->isAuthenticatedWithSocialLogin()) {
             $validated = array_merge($validated, request()->validate([
                 'email' => 'string|required|email|max:255|unique:users,email,' . auth()->user()->id,
                 'password' => 'nullable|between:8,25|confirmed'
