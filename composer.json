@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "ext-gd": "^7.4",
+        "fakerphp/faker": "^1.9.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -19,8 +21,7 @@
         "livewire/livewire": "^2.4",
         "mcamara/laravel-localization": "^1.6",
         "socialiteproviders/discord": "^4.1",
-        "socialiteproviders/twitch": "^5.3",
-        "fakerphp/faker": "^1.9.1"
+        "socialiteproviders/twitch": "^5.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
