@@ -85,7 +85,9 @@ class ProfilesController extends Controller
             $file = $validated['avatar'];
             $pathToFile = 'storage/' . $file->store('avatars');
 
-            Image::make($pathToFile)->fit(600)->save($pathToFile);
+            Image::make(
+                request()->file('avatar')->getRealPath()
+            )->fit(600)->save($pathToFile);
 
             $validated['avatar'] = $file->hashName();
         }
