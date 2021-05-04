@@ -31,9 +31,11 @@ class SimilarGames extends GameComponent
                 ->json();
         });
 
-        $this->games = $this
-            ->formatForView($nonformattedGames[0]['similar_games'])
-            ->take(6);
+        if (isset($nonformattedGames[0]['similar_games'])) {
+            $this->games = $this
+                ->formatForView($nonformattedGames[0]['similar_games'])
+                ->take(6);
+        }
 
         $this->emitEvents('gameWithRatingAdded', $this->games, $this->prefix);
     }
