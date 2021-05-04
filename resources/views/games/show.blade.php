@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="app-container">
-        <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
-            <div class="flex-none">
+        <div class="game-details border-b text-center lg:text-left border-gray-800 pb-12 flex flex-col lg:flex-row">
+            <div class="flex-none flex justify-center lg:block lg:justify-start">
                 <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] ?? __('No specified name') }}">
             </div>
             <div class="lg:ml-12 lg:mr-64">
@@ -21,7 +21,7 @@
                     </span>
                 </div>
 
-                <div class="flex flex-wrap items-center mt-8">
+                <div class="flex flex-wrap justify-center lg:justify-start items-center mt-8">
                     @isset($game['memberRating'])
                         <livewire:member-rating :game="$game" />
                     @endisset
@@ -66,7 +66,7 @@
                     {{ $game['summary'] ?? __('Summary not available') }}
                 </p>
 
-                <div class="mt-5" x-data="{ isTrailerModalVisible: false }">
+                <div class="mt-5 flex justify-center lg:justify-start" x-data="{ isTrailerModalVisible: false }">
                     <button
                         @click="isTrailerModalVisible = true"
                         class="button button--primary"
