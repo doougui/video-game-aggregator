@@ -1,7 +1,7 @@
-<div class="relative" x-data="{ visible:true }" @click.away="visible = false">
+<div class="relative w-full order-1 lg:order-none lg:w-auto" x-data="{ visible:true }" @click.away="visible = false">
     <input wire:model.debouce.300ms="search"
            type="text"
-           class="bg-gray-800 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 px-3 pl-8 py-1"
+           class="bg-gray-800 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 w-full lg:w-64 px-3 pl-8 py-1"
            placeholder="{{ __('Search (Press \'/\' to focus)') }}"
            x-ref="search"
            @keydown.window="
@@ -27,7 +27,7 @@
     </div>
 
     @if(strlen($search) > 0)
-        <div class="absolute z-50 bg-gray-800 text-xs rounded w-64 mt-2" x-show.transition.opacity.duration.200="visible">
+        <div class="absolute z-50 bg-gray-800 text-xs rounded w-full lg:w-64 mt-2" x-show.transition.opacity.duration.200="visible">
             <ul>
                 @forelse($results as $game)
                     <li class="list-item">

@@ -5,7 +5,7 @@
                 <a href="{{ route('games.index') }}">
                     <img src="{{ asset('/img/video-game-aggregator.svg') }}" alt="Video Game Aggregator" class="w-32 flex-none">
                 </a>
-                <ul class="flex ml-0 lg:ml-16 space-x-8 mt-6 lg:mt-0">
+                <ul class="flex flex-wrap justify-center lg:justify-start ml-0 lg:ml-16 gap-x-8 mt-6 lg:mt-0">
                     <li><a href="{{ route('games.index') }}" class="hover:text-gray-400">{{ __('Games') }}</a></li>
                     <li><a href="{{ route('games.index') . '#recently-published' }}" class="hover:text-gray-400">{{ __('Recently Published') }}</a></li>
                     <li><a href="{{ route('games.index') . '#most-anticipated' }}" class="hover:text-gray-400">{{ __('Most Anticipated') }}</a></li>
@@ -13,9 +13,9 @@
                 </ul>
             </div>
 
-            <div class="flex items-center mt-6 lg:mt-0">
+            <div class="flex flex-wrap justify-center items-center mt-6 lg:mt-0">
                 <livewire:search-dropdown />
-                <div class="ml-6 flex items-center">
+                <div class="lg:ml-6 mb-6 lg:mb-0 flex items-center">
                     @auth
                         <div class="flex items-center relative" x-data="{ isOpen: false }" @click.away="isOpen = false">
                             <a href="#" @click.prevent="isOpen = ! isOpen" aria-haspopup="true" :aria-expanded="isOpen">
@@ -53,7 +53,7 @@
                         @endif
                     @endauth
 
-                    <div class="flex items-center relative ml-4 mr-3" x-data="{ isOpen: false }" @click.away="isOpen = false">
+                    <div class="flex items-center relative ml-4 lg:mr-3" x-data="{ isOpen: false }" @click.away="isOpen = false">
                         <a href="#" class="flex items-center" @click.prevent="isOpen = ! isOpen" aria-haspopup="true" :aria-expanded="isOpen">
                             <img
                                 src="{{ asset('/img/' . \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales()[\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale()]['flag']) }}"
