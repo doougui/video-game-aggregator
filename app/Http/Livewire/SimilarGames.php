@@ -14,9 +14,8 @@ class SimilarGames extends GameComponent
 
     public function fetch()
     {
-        $nonformattedGames = Cache::remember('popular-games', 120, function () {
-            return Http::withHeaders(config('services.igdb'))
-                ->withBody(
+        $nonformattedGames = Http::withHeaders(config('services.igdb'))
+            ->withBody(
             "
                         fields
                             similar_games.rating,
@@ -29,7 +28,6 @@ class SimilarGames extends GameComponent
                 )
                 ->post('https://api.igdb.com/v4/games')
                 ->json();
-        });
 
         if (isset($nonformattedGames[0]['similar_games'])) {
             $this->games = $this
