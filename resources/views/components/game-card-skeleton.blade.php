@@ -1,4 +1,4 @@
-<div class="game mt-8">
+<div class="game mt-8 text-center lg:text-left">
     <div class="relative inline-block">
         <div class="bg-gray-800 w-44 h-56"></div>
     </div>

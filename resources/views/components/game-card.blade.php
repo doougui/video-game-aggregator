@@ -1,4 +1,4 @@
-<div class="game mt-8">
+<div class="game mt-8 text-center lg:text-left">
     <div class="relative inline-block">
         <a href="{{ $game['slug'] ? route('games.show', $game['slug']) : '#' }}">
             <img src="{{ $game['coverImageUrl'] }}" alt="{{ $game['name'] ?? __('No specified name') }}" class="hover:opacity-75 transition ease-in-out duration-150">
