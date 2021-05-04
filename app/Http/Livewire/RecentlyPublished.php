@@ -14,7 +14,7 @@ class RecentlyPublished extends GameComponent
 
     public function fetch()
     {
-        $nonformattedGames = Cache::remember('recently-published', 7, function () {
+        $nonformattedGames = Cache::remember('recently-published', 120, function () {
             $before = Carbon::now()->subMonths(2)->timestamp;
             $current = Carbon::now()->timestamp;
 

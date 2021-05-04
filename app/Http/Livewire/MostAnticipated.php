@@ -12,7 +12,7 @@ class MostAnticipated extends SmallGameComponent
 
     public function fetch()
     {
-        $nonformattedGames = Cache::remember('most-anticipated', 7, function () {
+        $nonformattedGames = Cache::remember('most-anticipated', 120, function () {
             $afterFourMonths = Carbon::now()->addMonths(4)->timestamp;
             $current = Carbon::now()->timestamp;
 

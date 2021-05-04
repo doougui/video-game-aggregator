@@ -13,7 +13,7 @@ class PopularGames extends GameComponent
 
     public function fetch()
     {
-        $nonformattedGames = Cache::remember('popular-games', 7, function () {
+        $nonformattedGames = Cache::remember('popular-games', 120, function () {
             $before = Carbon::now()->subMonths(2)->timestamp;
             $after = Carbon::now()->addMonths(2)->timestamp;
 

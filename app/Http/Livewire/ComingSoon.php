@@ -12,7 +12,7 @@ class ComingSoon extends SmallGameComponent
 
     public function fetch()
     {
-        $nonformattedGames = Cache::remember('coming-soon', 7, function () {
+        $nonformattedGames = Cache::remember('coming-soon', 120, function () {
             $current = Carbon::now()->timestamp;
 
             return Http::withHeaders(config('services.igdb'))
